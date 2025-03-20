@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | CodeCrafted Studios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+            background-image: url('Images/CodeCrafted Home background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            position: relative;
+        }
+
+        .content {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #FFF;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        .navbar {
+            background-color: #333;
+            overflow: visible;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0; /* Changed from top: 10 to top: 0 */
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            height: 50px;
+        }
+
+        .navbar a, .dropdown {
+            color: #f2f2f2;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .navbar a.active {
+            background-color: #4CAF50;
+        }
+        
+        /* Dropdown Menu Styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-btn {
+            background-color: #333;
+            color: #f2f2f2;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dropdown-btn:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #444;
+            min-width: 100%;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 9999;
+        }
+
+        .dropdown-content a {
+            color: #f2f2f2;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropdown-btn {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .content h1, .content h2 {
+            width: 100%;
+            text-align: center;
+        }
+
+        .big-title {
+            font-family: 'Arial Black', Gadget, sans-serif;
+            font-size: 3.5em;
+            font-weight: bold;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        .cursive-text {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.5em;
+            margin-bottom: 40px;
+        }
+
+        .montserrat-paragraph {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Terms of Service Styles */
+        .tos-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .tos-container p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .tos-section {
+            margin-bottom: 40px;
+        }
+
+        .tos-section h3 {
+            color: #4CAF50;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+            margin-top: 30px;
+            font-size: 1.5em;
+        }
+
+        .tos-section ul, .tos-section ol {
+            margin-bottom: 20px;
+            padding-left: 30px;
+        }
+
+        .tos-section li {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .tos-updated {
+            text-align: right;
+            font-style: italic;
+            margin-bottom: 30px;
+            color: #aaa;
+            font-size: 0.9em;
+        }
+
+        .tos-intro {
+            margin-bottom: 30px;
+        }
+
+        .toc-container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0 40px;
+        }
+
+        .toc-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #4CAF50;
+            font-size: 1.2em;
+        }
+
+        .toc-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 8px;
+        }
+
+        .toc-list a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .toc-list a:hover {
+            color: #4CAF50;
+            text-decoration: underline;
+        }
+
+        .tos-footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .contact-link {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .contact-link:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .definition {
+            font-style: italic;
+            color: #aaa;
+            margin-left: 20px;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            background-color: rgba(76, 175, 80, 0.2);
+            padding: 3px 6px;
+            border-radius: 3px;
+        }
+
+        .print-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .print-button:hover {
+            background-color: #45a049;
+        }
+
+        @media print {
+            body {
+                background: none;
+                color: black;
+            }
+            
+            .content {
+                background: none;
+                color: black;
+            }
+            
+            .navbar, .print-button {
+                display: none;
+            }
+            
+            .tos-section h3 {
+                color: #333;
+            }
+            
+            .contact-link {
+                color: #333;
+                text-decoration: underline;
+            }
+            
+            .highlight {
+                background: none;
+                font-weight: bold;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="Home.html">Home</a>
+    </nav>
+
+    <div class="content">
+        <h1 class="big-title">Terms of Service</h1>
+        <h2><span class="cursive-text">Our Agreement With You</span></h2>
+
+        <div class="tos-container">
+            <button class="print-button" onclick="window.print()">Print Terms of Service</button>
+            
+            <div class="tos-updated">Last Updated: March 11, 2025</div>
+            
+            <div class="tos-intro">
+                <p>Please read these Terms of Service ("Terms", "Terms of Service") carefully before using the website and services offered by CodeCrafted Studios ("we", "us", "our", "CodeCrafted Studios"). Your access to and use of our services is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users, and clients who access or use our services.</p>
+                
+                <p>By accessing or using our services, you agree to be bound by these Terms. If you disagree with any part of the terms, you may not access our services.</p>
+            </div>
+            
+            <div class="toc-container">
+                <div class="toc-title">Table of Contents</div>
+                <ul class="toc-list">
+                    <li><a href="#definitions">1. Definitions</a></li>
+                    <li><a href="#services">2. Services</a></li>
+                    <li><a href="#client-responsibilities">3. Client Responsibilities</a></li>
+                    <li><a href="#project-timeline">4. Project Timeline and Delivery</a></li>
+                    <li><a href="#payments">5. Payments and Billing</a></li>
+                    <li><a href="#intellectual-property">6. Intellectual Property Rights</a></li>
+                    <li><a href="#confidentiality">7. Confidentiality</a></li>
+                    <li><a href="#revisions">8. Revisions and Changes</a></li>
+                    <li><a href="#termination">9. Termination</a></li>
+                    <li><a href="#limitation">10. Limitation of Liability</a></li>
+                    <li><a href="#warranty">11. Warranty and Disclaimer</a></li>
+                    <li><a href="#indemnification">12. Indemnification</a></li>
+                    <li><a href="#severability">13. Severability</a></li>
+                    <li><a href="#governing-law">14. Governing Law</a></li>
+                    <li><a href="#changes">15. Changes to Terms</a></li>
+                    <li><a href="#contact">16. Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="tos-section" id="definitions">
+                <h3>1. Definitions</h3>
+                <p>Throughout these Terms of Service, certain terms will be used with specific meanings. For clarity, the following definitions apply:</p>
+                
+                <p><strong>"Agreement"</strong><span class="definition">Refers to these Terms of Service, along with any additional documents referenced herein, including but not limited to project proposals, service agreements, and statements of work.</span></p>
+                
+                <p><strong>"Services"</strong><span class="definition">Refers to all web design, development, maintenance, hosting, and related services provided by CodeCrafted Studios to the Client.</span></p>
+                
+                <p><strong>"Client"</strong><span class="definition">Refers to the individual or entity that has engaged CodeCrafted Studios to provide Services.</span></p>
+                
+                <p><strong>"Deliverables"</strong><span class="definition">Refers to all materials, including but not limited to websites, web applications, designs, code, content, and documentation that CodeCrafted Studios creates for the Client as part of the Services.</span></p>
+                
+                <p><strong>"Intellectual Property"</strong><span class="definition">Refers to all patents, trademarks, service marks, trade names, trade secrets, copyrights, and other proprietary rights related to the Services and Deliverables.</span></p>
+                
+                <p><strong>"Project"</strong><span class="definition">Refers to the specific scope of work to be performed by CodeCrafted Studios for the Client, as detailed in a project proposal or statement of work.</span></p>
+                
+                <p><strong>"Project Materials"</strong><span class="definition">Refers to all content, information, data, and materials provided by the Client to CodeCrafted Studios for use in the Project.</span></p>
+            </div>
+            
+            <div class="tos-section" id="services">
+                <h3>2. Services</h3>
+                <p>2.1 <strong>Scope of Services.</strong> CodeCrafted Studios agrees to provide web design, development, and related services as outlined in the project proposal, statement of work, or other agreement between CodeCrafted Studios and the Client. The specific details, deliverables, and timeline for each project will be outlined in these documents.</p>
+                
+                <p>2.2 <strong>Service Standards.</strong> CodeCrafted Studios will perform the Services in a professional and workmanlike manner, consistent with industry standards. We will make every reasonable effort to ensure that all Deliverables meet the specifications agreed upon with the Client.</p>
+                
+                <p>2.3 <strong>Service Limitations.</strong> Unless explicitly stated in the project proposal or statement of work, our Services do not include:</p>
+                <ul>
+                    <li>Content creation (e.g., writing copy, creating images, or producing videos)</li>
+                    <li>Search engine optimization beyond basic on-page elements</li>
+                    <li>Ongoing maintenance or updates beyond the agreed-upon warranty period</li>
+                    <li>Training beyond the initial tutorial session</li>
+                    <li>Third-party software or service subscription fees</li>
+                    <li>Legal advice regarding compliance with industry regulations</li>
+                </ul>
+                
+                <p>2.4 <strong>Additional Services.</strong> Any services requested by the Client that are outside the scope defined in the project proposal or statement of work will be considered additional services. These additional services may require a separate agreement or amendment to the existing agreement and may incur additional fees.</p>
+                
+                <p>2.5 <strong>Third-Party Services.</strong> Our Services may include the integration or use of third-party services, tools, plugins, or platforms. CodeCrafted Studios is not responsible for any limitations, changes, or discontinuation of these third-party services. The Client acknowledges that these third-party services may be subject to their own terms of service and privacy policies.</p>
+                
+                <p>2.6 <strong>Subcontractors.</strong> CodeCrafted Studios reserves the right to engage subcontractors to assist in providing the Services. CodeCrafted Studios will remain primarily responsible for ensuring that all Services are performed according to the standards outlined in these Terms.</p>
+            </div>
+            
+            <div class="tos-section" id="client-responsibilities">
+                <h3>3. Client Responsibilities</h3>
+                <p>3.1 <strong>Provision of Materials.</strong> The Client is responsible for providing all necessary Project Materials, including but not limited to text content, images, logos, brand guidelines, and access to existing systems, as required for CodeCrafted Studios to perform the Services. These materials must be provided in a timely manner according to the agreed-upon project timeline.</p>
+                
+                <p>3.2 <strong>Quality of Materials.</strong> The Client is responsible for ensuring that all Project Materials provided to CodeCrafted Studios:</p>
+                <ul>
+                    <li>Are owned by the Client or properly licensed for use in the Project</li>
+                    <li>Do not infringe upon any third-party intellectual property rights</li>
+                    <li>Comply with all applicable laws and regulations</li>
+                    <li>Are free from malware, viruses, or other harmful code</li>
+                    <li>Are accurate and complete</li>
+                </ul>
+                
+                <p>3.3 <strong>Review and Approval.</strong> The Client is responsible for reviewing and approving all Deliverables within the timeframes specified in the project timeline. Failure to provide timely feedback or approval may result in project delays for which CodeCrafted Studios cannot be held responsible.</p>
+                
+                <p>3.4 <strong>Cooperation.</strong> The Client agrees to cooperate with CodeCrafted Studios throughout the project, including but not limited to:</p>
+                <ul>
+                    <li>Responding to communications in a timely manner</li>
+                    <li>Attending scheduled meetings or calls</li>
+                    <li>Providing necessary access to accounts, systems, or platforms</li>
+                    <li>Making available key personnel who can make decisions regarding the Project</li>
+                </ul>
+                
+                <p>3.5 <strong>Testing.</strong> The Client is responsible for thoroughly testing the Deliverables upon receipt and promptly reporting any issues or defects to CodeCrafted Studios within the warranty period specified in the project proposal or statement of work.</p>
+                
+                <p>3.6 <strong>Compliance with Laws.</strong> The Client is responsible for ensuring that their use of the Deliverables complies with all applicable laws and regulations, including but not limited to privacy laws, intellectual property laws, and industry-specific regulations.</p>
+                
+                <p>3.7 <strong>Confidentiality.</strong> The Client agrees to maintain the confidentiality of any proprietary information disclosed by CodeCrafted Studios during the course of providing the Services, including but not limited to methodologies, techniques, and pricing details.</p>
+            </div>
+            
+            <div class="tos-section" id="project-timeline">
+                <h3>4. Project Timeline and Delivery</h3>
+                <p>4.1 <strong>Project Schedule.</strong> CodeCrafted Studios will develop a project timeline in consultation with the Client. This timeline will outline key milestones, delivery dates, and review periods. Both parties agree to make reasonable efforts to adhere to this timeline.</p>
+                
+                <p>4.2 <strong>Dependencies.</strong> The Client acknowledges that the project timeline is dependent on the timely provision of Project Materials and feedback from the Client. Delays in providing these materials or feedback may result in corresponding delays in the project timeline.</p>
+                
+                <p>4.3 <strong>Force Majeure.</strong> Neither party shall be liable for delays caused by circumstances beyond their reasonable control, including but not limited to acts of God, natural disasters, pandemics, government restrictions, power failures, or internet outages. In such cases, the parties agree to work together to adjust the project timeline accordingly.</p>
+                
+                <p>4.4 <strong>Delivery Methods.</strong> Deliverables will be provided to the Client through secure electronic means, such as email, project management systems, file sharing platforms, or direct upload to the Client's servers as appropriate for the specific Deliverable.</p>
+                
+                <p>4.5 <strong>Acceptance.</strong> Upon delivery of any Deliverable, the Client will have a designated review period (typically 5-10 business days, as specified in the project proposal) to review the Deliverable and either accept it or provide specific feedback on required changes. If the Client does not provide feedback within this period, the Deliverable will be deemed accepted.</p>
+                
+                <p>4.6 <strong>Revision Process.</strong> If the Client requests revisions to a Deliverable, CodeCrafted Studios will make reasonable efforts to implement these revisions according to the revision process outlined in Section 8 of these Terms.</p>
+                
+                <p>4.7 <strong>Final Delivery.</strong> Upon completion of all Services and acceptance of all Deliverables, CodeCrafted Studios will provide the Client with the final Deliverables as specified in the project proposal or statement of work. This may include source files, documentation, access credentials, and other relevant materials.</p>
+            </div>
+            
+            <div class="tos-section" id="payments">
+                <h3>5. Payments and Billing</h3>
+                <p>5.1 <strong>Fees.</strong> The Client agrees to pay CodeCrafted Studios the fees specified in the project proposal, statement of work, or other agreement between the parties. All fees are quoted in US Dollars unless otherwise specified.</p>
+                
+                <p>5.2 <strong>Payment Schedule.</strong> Unless otherwise agreed upon in writing, payment for Services will be made according to the following schedule:</p>
+                <ul>
+                    <li>50% of the total project fee as a non-refundable deposit before work begins</li>
+                    <li>Remaining 50% upon completion of the project and before the final Deliverables are provided to the Client</li>
+                </ul>
+                
+                <p>For larger projects, an alternative milestone-based payment schedule may be outlined in the project proposal or statement of work.</p>
+                
+                <p>5.3 <strong>Invoicing.</strong> CodeCrafted Studios will issue invoices for all fees due. Invoices will be sent electronically to the Client's designated billing contact and are payable within 14 calendar days of the invoice date unless otherwise specified.</p>
+                
+                <p>5.4 <strong>Late Payments.</strong> Any payment not received within the specified payment terms will be considered late. CodeCrafted Studios reserves the right to:</p>
+                <ul>
+                    <li>Charge a late payment fee of 1.5% per month (or the maximum allowed by law, if less) on any outstanding balance</li>
+                    <li>Suspend work on the Project until all outstanding payments are received</li>
+                    <li>Withhold delivery of any Deliverables until all outstanding payments are received</li>
+                    <li>After 30 days of non-payment, terminate the Agreement as outlined in Section 9 of these Terms</li>
+                </ul>
+                
+                <p>5.5 <strong>Taxes.</strong> All fees are exclusive of any applicable taxes, including but not limited to sales tax, value-added tax (VAT), or goods and services tax (GST). The Client is responsible for paying all applicable taxes, except for taxes based on CodeCrafted Studios' income.</p>
+                
+                <p>5.6 <strong>Expenses.</strong> Unless otherwise specified in the project proposal or statement of work, the Client is responsible for reimbursing CodeCrafted Studios for all reasonable expenses incurred in connection with providing the Services, including but not limited to:</p>
+                <ul>
+                    <li>Third-party software, plugins, or services required for the Project</li>
+                    <li>Stock photos, fonts, or other licensed assets</li>
+                    <li>Domain registration and hosting fees</li>
+                    <li>Travel expenses (if applicable and pre-approved by the Client)</li>
+                </ul>
+                
+                <p>5.7 <strong>Currency and Payment Methods.</strong> All payments must be made in US Dollars unless otherwise specified. CodeCrafted Studios accepts payments via bank transfer, credit card, or other methods as specified on our invoices.</p>
+                
+                <p>5.8 <strong>Price Changes.</strong> CodeCrafted Studios reserves the right to change our fees for future services. Any such changes will not affect existing agreements or proposals that have already been accepted by the Client.</p>
+            </div>
+            
+            <div class="tos-section" id="intellectual-property">
+                <h3>6. Intellectual Property Rights</h3>
+                <p>6.1 <strong>Client Materials.</strong> The Client retains all ownership rights to the Project Materials provided to CodeCrafted Studios for use in the Project. By providing these materials, the Client grants CodeCrafted Studios a limited license to use, reproduce, and modify these materials solely for the purpose of providing the Services.</p>
+                
+                <p>6.2 <strong>Deliverables.</strong> Upon receipt of full payment for the Services, CodeCrafted Studios will transfer to the Client ownership of the Deliverables specifically created for the Client, subject to the following conditions and exceptions:</p>
+                
+                <p>6.3 <strong>CodeCrafted Studios' Proprietary Assets.</strong> CodeCrafted Studios retains ownership of all proprietary tools, methods, techniques, processes, and code libraries developed by CodeCrafted Studios prior to or independent of the Services provided to the Client. This includes, but is not limited to:</p>
+                <ul>
+                    <li>Frameworks, templates, and code libraries</li>
+                    <li>Development tools and methodologies</li>
+                    <li>Design elements not specifically created for the Client</li>
+                    <li>Internal processes and documentation</li>
+                </ul>
+                
+                <p>For these proprietary assets that are incorporated into the Deliverables, CodeCrafted Studios grants the Client a non-exclusive, perpetual license to use these assets as part of the Deliverables.</p>
+                
+                <p>6.4 <strong>Third-Party Assets.</strong> The Deliverables may incorporate third-party assets, such as plugins, libraries, fonts, or images. The Client's rights to use these third-party assets are governed by the respective license terms of those assets. CodeCrafted Studios will inform the Client of any third-party assets with usage restrictions that are incorporated into the Deliverables.</p>
+                
+                <p>6.5 <strong>Portfolio Rights.</strong> The Client grants CodeCrafted Studios the right to:</p>
+                <ul>
+                    <li>Include a reference to the Client and a general description of the Services in CodeCrafted Studios' portfolio, website, and other promotional materials</li>
+                    <li>Use screenshots or excerpts of the Deliverables for demonstration purposes</li>
+                    <li>Link to the Client's website or other publicly available Deliverables</li>
+                </ul>
+                
+                <p>If the Client requires confidentiality regarding the Services provided, this must be explicitly stated in writing before the commencement of the Project.</p>
+                
+                <p>6.6 <strong>Attribution.</strong> Unless otherwise agreed upon in writing, CodeCrafted Studios reserves the right to place a small, discreet credit with a link to our website in the footer of websites we create. This attribution can be removed for an additional fee as specified in the project proposal.</p>
+                
+                <p>6.7 <strong>Intellectual Property Warranty.</strong> CodeCrafted Studios warrants that, to the best of our knowledge, the Deliverables will not infringe upon the intellectual property rights of any third party when used as intended and in accordance with these Terms. This warranty does not apply to any infringement arising from:</p>
+                <ul>
+                    <li>The Client's Project Materials</li>
+                    <li>Modifications made to the Deliverables by the Client or any third party</li>
+                    <li>Use of the Deliverables in combination with products or services not provided by CodeCrafted Studios</li>
+                </ul>
+            </div>
+            
+            <div class="tos-section" id="confidentiality">
+                <h3>7. Confidentiality</h3>
+                <p>7.1 <strong>Confidential Information.</strong> During the course of providing the Services, each party may disclose to the other certain confidential information. "Confidential Information" means any information that is designated as confidential or that, given the nature of the information or circumstances surrounding its disclosure, reasonably should be considered confidential.</p>
+                
+                <p>7.2 <strong>Protection of Confidential Information.</strong> Each party agrees to:</p>
+                <ul>
+                    <li>Maintain the confidentiality of the other party's Confidential Information with at least the same degree of care that it uses to protect its own confidential information, but no less than reasonable care</li>
+                    <li>Use the other party's Confidential Information solely for the purpose of performing its obligations or exercising its rights under this Agreement</li>
+                    <li>Not disclose the other party's Confidential Information to any third party without the prior written consent of the disclosing party, except as required by law or as necessary to perform the Services</li>
+                </ul>
+                
+                <p>7.3 <strong>Exceptions.</strong> The obligations of confidentiality do not apply to information that:</p>
+                <ul>
+                    <li>Is or becomes publicly known through no fault of the receiving party</li>
+                    <li>Was known to the receiving party before receipt from the disclosing party</li>
+                    <li>Is rightfully obtained by the receiving party from a third party without restriction on disclosure</li>
+                    <li>Is independently developed by the receiving party without use of the disclosing party's Confidential Information</li>
+                    <li>Is required to be disclosed by law, regulation, or court order, provided that the receiving party provides prompt notice to the disclosing party of such requirement</li>
+                </ul>
+                
+                <p>7.4 <strong>Duration of Obligation.</strong> The obligations of confidentiality under this section will survive the termination or expiration of this Agreement for a period of two (2) years, except for trade secrets, which will remain confidential for as long as they qualify as trade secrets under applicable law.</p>
+                
+                <p>7.5 <strong>Client Data Privacy.</strong> If CodeCrafted Studios has access to the Client's customer data or other personal information as part of providing the Services, CodeCrafted Studios will handle such information in accordance with our Privacy Policy and all applicable data protection laws.</p>
+                
+                <p>7.6 <strong>Return of Confidential Information.</strong> Upon termination of this Agreement or upon the disclosing party's request, the receiving party will promptly return or destroy all Confidential Information of the disclosing party in its possession or control.</p>
+            </div>
+            
+            <div class="tos-section" id="contact">
+                <h3>16. Contact Us</h3>
+                <p>16.1 <strong>Questions About Terms.</strong> If you have any questions about these Terms of Service, please contact us at:</p>
+                <p class="highlight">CodeCrafted Studios<br>
+                Email: CodeCraftedStudios@outlook.com<br>
+                Phone: (970) 699-2667</p>
+                
+                <p>16.2 <strong>Legal Notices.</strong> Any legal notices required under these Terms should be sent to the email address above with a subject line clearly indicating that the communication is a legal notice.</p>
+                
+                <p>16.3 <strong>Feedback.</strong> We welcome your feedback and suggestions about how to improve our Services. You can submit feedback by emailing us at the address above. By submitting feedback, you grant us the right to use that feedback without any restriction or compensation to you.</p>
+            </div>
+            
+            <div class="tos-footer">
+                <p>By using our services, you acknowledge that you have read and understood these Terms of Service and agree to be bound by them.</p>
+            </div>
+            
+            <div class="tos-section" id="termination">
+                <h3>9. Termination</h3>
+                <p>9.1 <strong>Termination by Either Party.</strong> Either party may terminate this Agreement if the other party materially breaches any of its obligations under this Agreement and fails to cure such breach within thirty (30) days after receiving written notice of the breach.</p>
+                
+                <p>9.2 <strong>Termination by Client.</strong> The Client may terminate this Agreement at any time by providing written notice to CodeCrafted Studios, subject to the following conditions:</p>
+                <ul>
+                    <li>The initial deposit is non-refundable</li>
+                    <li>The Client is responsible for paying for all Services performed up to the date of termination</li>
+                    <li>If termination occurs after CodeCrafted Studios has completed more than 50% of the Project, the Client may be responsible for paying up to 75% of the total project fee, depending on the work completed</li>
+                </ul>
+                
+                <p>9.3 <strong>Termination by CodeCrafted Studios.</strong> CodeCrafted Studios may terminate this Agreement in the following circumstances:</p>
+                <ul>
+                    <li>The Client fails to make any payment when due and does not cure such failure within fourteen (14) days of receiving notice</li>
+                    <li>The Client fails to provide necessary Project Materials or feedback within thirty (30) days of request, resulting in project delays</li>
+                    <li>The Client requests services that would require CodeCrafted Studios to violate legal or ethical standards</li>
+                    <li>CodeCrafted Studios determines that the working relationship has deteriorated to a point where effective collaboration is no longer possible</li>
+                </ul>
+                
+                <p>9.4 <strong>Effect of Termination.</strong> Upon termination of this Agreement:</p>
+                <ul>
+                    <li>All undisputed payments due to CodeCrafted Studios will become immediately payable</li>
+                    <li>CodeCrafted Studios will deliver to the Client all completed or in-progress Deliverables for which payment has been received</li>
+                    <li>Each party will return or destroy all Confidential Information of the other party</li>
+                    <li>Sections of this Agreement relating to payment obligations, intellectual property rights, confidentiality, limitation of liability, and any other provisions that by their nature should survive will continue to survive</li>
+                </ul>
+                
+                <p>9.5 <strong>Project Abandonment.</strong> If the Client abandons the Project (defined as no communication or activity for 60 consecutive days despite CodeCrafted Studios' attempts to contact the Client), CodeCrafted Studios may consider the Project terminated by the Client and retain all payments received. In such cases, CodeCrafted Studios reserves the right to use or repurpose any work created for the abandoned Project after removing all Client-specific content and branding.</p>
+            </div>
+            
+            <div class="tos-section" id="limitation">
+                <h3>10. Limitation of Liability</h3>
+                <p>10.1 <strong>Limitation of Damages.</strong> To the maximum extent permitted by applicable law, in no event will CodeCrafted Studios be liable to the Client or any third party for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, revenue, data, business opportunities, or anticipated savings, even if CodeCrafted Studios has been advised of the possibility of such damages.</p>
+                
+                <p>10.2 <strong>Cap on Liability.</strong> In no event will CodeCrafted Studios' total cumulative liability to the Client for all claims arising out of or related to this Agreement exceed the total amount of fees paid by the Client to CodeCrafted Studios under this Agreement during the twelve (12) months preceding the claim.</p>
+                
+                <p>10.3 <strong>Exceptions.</strong> The limitations of liability in this section will not apply to:</p>
+                <ul>
+                    <li>Liability arising from death or personal injury caused by negligence</li>
+                    <li>Liability arising from fraud or fraudulent misrepresentation</li>
+                    <li>Any other liability that cannot be excluded by law</li>
+                </ul>
+                
+                <p>10.4 <strong>Essential Purpose.</strong> The parties acknowledge that the limitations of liability set forth in this section are essential elements of the basis of the bargain between CodeCrafted Studios and the Client and that in the absence of such limitations, the economic terms of this Agreement would be substantially different.</p>
+                
+                <p>10.5 <strong>Time Limitation.</strong> Any cause of action or claim the Client may have arising out of or relating to this Agreement must be commenced within one (1) year after the cause of action accrues; otherwise, such cause of action or claim is permanently barred.</p>
+            </div>
+            
+            <div class="tos-section" id="warranty">
+                <h3>11. Warranty and Disclaimer</h3>
+                <p>11.1 <strong>Limited Warranty.</strong> CodeCrafted Studios warrants that the Services will be performed in a professional and workmanlike manner in accordance with generally accepted industry standards. For a period of thirty (30) days following the delivery of the final Deliverables (the "Warranty Period"), CodeCrafted Studios will correct any defects in the Deliverables that materially deviate from the approved specifications at no additional charge to the Client.</p>
+                
+                <p>11.2 <strong>Warranty Exclusions.</strong> The limited warranty set forth above does not apply to:</p>
+                <ul>
+                    <li>Issues caused by modifications to the Deliverables made by the Client or any third party</li>
+                    <li>Issues arising from the Client's hardware, software, or network infrastructure</li>
+                    <li>Issues caused by third-party services or platforms integrated with the Deliverables</li>
+                    <li>Issues resulting from the Client's content or materials</li>
+                    <li>Subjective issues related to design preferences</li>
+                    <li>Issues reported after the Warranty Period has expired</li>
+                </ul>
+                
+                <p>11.3 <strong>Disclaimer.</strong> EXCEPT FOR THE EXPRESS WARRANTIES SET FORTH IN THIS AGREEMENT, CODECRAFTED STUDIOS PROVIDES THE SERVICES AND DELIVERABLES "AS IS" AND HEREBY DISCLAIMS ALL OTHER WARRANTIES, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE. CODECRAFTED STUDIOS SPECIFICALLY DISCLAIMS ALL IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT, AND ALL WARRANTIES ARISING FROM COURSE OF DEALING, USAGE, OR TRADE PRACTICE.</p>
+                
+                <p>11.4 <strong>Third-Party Services.</strong> CodeCrafted Studios makes no warranties or representations regarding any third-party services, software, or platforms that may be incorporated into or used with the Deliverables. The Client's use of such third-party services is governed by the respective terms and conditions of those services.</p>
+                
+                <p>11.5 <strong>No Guarantee of Results.</strong> CodeCrafted Studios does not guarantee any specific business results (such as increased traffic, conversions, or sales) from the Services or Deliverables. While we strive to create high-quality websites and applications that support the Client's business objectives, many factors outside our control affect business outcomes.</p>
+            </div>
+            
+            <div class="tos-section" id="indemnification">
+                <h3>12. Indemnification</h3>
+                <p>12.1 <strong>Client Indemnification.</strong> The Client agrees to indemnify, defend, and hold harmless CodeCrafted Studios and its officers, directors, employees, agents, and subcontractors from and against any and all claims, damages, liabilities, costs, and expenses (including reasonable attorneys' fees) arising out of or related to:</p>
+                <ul>
+                    <li>The Client's Project Materials, including any claim that such materials infringe upon the intellectual property rights of any third party</li>
+                    <li>The Client's use of the Deliverables in a manner that violates these Terms or any applicable law or regulation</li>
+                    <li>The Client's breach of any representation, warranty, or obligation under these Terms</li>
+                    <li>Any content or materials added to the Deliverables by the Client after delivery</li>
+                </ul>
+                
+                <p>12.2 <strong>CodeCrafted Studios Indemnification.</strong> CodeCrafted Studios agrees to indemnify, defend, and hold harmless the Client from and against any and all claims, damages, liabilities, costs, and expenses (including reasonable attorneys' fees) arising out of any claim that the Deliverables, as delivered by CodeCrafted Studios and used in accordance with these Terms, infringe upon the intellectual property rights of any third party. This indemnification does not apply to infringement arising from:</p>
+                <ul>
+                    <li>The Client's Project Materials</li>
+                    <li>Modifications to the Deliverables made by the Client or any third party</li>
+                    <li>Use of the Deliverables in combination with products or services not provided by CodeCrafted Studios</li>
+                </ul>
+                
+                <p>12.3 <strong>Indemnification Procedure.</strong> The indemnified party must: (a) promptly notify the indemnifying party in writing of any claim, suit, or proceeding for which indemnity is claimed; (b) allow the indemnifying party to control the defense and settlement of the claim; and (c) provide reasonable cooperation to the indemnifying party in the defense and settlement of the claim. The indemnified party may participate in the defense at its own expense.</p>
+                
+                <p>12.4 <strong>Remedies.</strong> If the Deliverables become, or in CodeCrafted Studios' opinion are likely to become, the subject of an infringement claim, CodeCrafted Studios may, at its option and expense, either: (a) procure for the Client the right to continue using the Deliverables; (b) replace or modify the Deliverables to make them non-infringing while maintaining substantially equivalent functionality; or (c) if neither (a) nor (b) is commercially feasible, terminate this Agreement and refund to the Client a pro-rated portion of the fees paid for the Deliverables.</p>
+            </div>
+            
+            <div class="tos-section" id="severability">
+                <h3>13. Severability</h3>
+                <p>13.1 <strong>Severability Clause.</strong> If any provision of these Terms is found to be unenforceable or invalid under any applicable law, such unenforceability or invalidity will not render these Terms unenforceable or invalid as a whole. Instead, such provision will be changed and interpreted to best accomplish the objectives of such unenforceable or invalid provision within the limits of applicable law.</p>
+                
+                <p>13.2 <strong>Reformation.</strong> In the event that any provision of these Terms is found to be invalid or unenforceable, the parties agree that a court may reform such provision to the extent necessary to make it valid and enforceable while preserving its intent. If reformation is not possible, the provision will be severed, and the remaining provisions will remain in full force and effect.</p>
+            </div>
+            
+            <div class="tos-section" id="governing-law">
+                <h3>14. Governing Law</h3>
+                <p>14.1 <strong>Governing Law.</strong> These Terms and any disputes arising out of or related to these Terms or the Services will be governed by and construed in accordance with the laws of the State of Colorado, without giving effect to any principles of conflicts of law.</p>
+                
+                <p>14.2 <strong>Dispute Resolution.</strong> Any dispute, controversy, or claim arising out of or relating to these Terms or the Services will first be attempted to be resolved through friendly consultation between the parties. If the dispute cannot be resolved through consultation within thirty (30) days after one party has notified the other of the existence of the dispute, either party may submit the dispute to mediation. If mediation is unsuccessful, the parties agree to submit the dispute to binding arbitration.</p>
+                
+                <p>14.3 <strong>Arbitration.</strong> Any arbitration will be conducted in accordance with the rules of the American Arbitration Association then in effect. The arbitration will take place in Denver, Colorado, and will be conducted in English. The decision of the arbitrator will be final and binding on the parties and may be entered and enforced in any court of competent jurisdiction by either party.</p>
+                
+                <p>14.4 <strong>Exceptions to Arbitration.</strong> Notwithstanding the foregoing, nothing in these Terms will preclude either party from seeking injunctive relief or other equitable remedies in any court of competent jurisdiction.</p>
+                
+                <p>14.5 <strong>Class Action Waiver.</strong> To the extent permitted by law, the Client and CodeCrafted Studios agree that each may bring claims against the other only in an individual capacity and not as a plaintiff or class member in any purported class or representative proceeding.</p>
+            </div>
+            
+            <div class="tos-section" id="changes">
+                <h3>15. Changes to Terms</h3>
+                <p>15.1 <strong>Updates to Terms.</strong> CodeCrafted Studios reserves the right to update and change these Terms from time to time. Any changes to these Terms will be effective immediately upon posting the revised Terms on our website. Your continued use of our Services after we post any modifications to the Terms will constitute your acknowledgment of the modifications and your consent to abide and be bound by the modified Terms.</p>
+                
+                <p>15.2 <strong>Material Changes.</strong> If we make material changes to these Terms, we will notify existing clients by email or through a prominent notice on our website prior to the changes becoming effective.</p>
+                
+                <p>15.3 <strong>Current Version.</strong> The most current version of these Terms will always be available on our website. It is your responsibility to check our website periodically for changes to these Terms.</p>
+                
+                <p>15.4 <strong>Existing Agreements.</strong> For existing agreements, the version of the Terms in effect at the time of entering into the agreement will continue to apply until the completion of the Project, unless otherwise agreed upon in writing by both parties.</p>
+            </div>
+            
+            <div class="tos-section" id="revisions">
+                <h3>8. Revisions and Changes</h3>
+                <p>8.1 <strong>Revision Process.</strong> CodeCrafted Studios is committed to ensuring the Client's satisfaction with all Deliverables. The project proposal or statement of work will specify the number of revision rounds included in the project scope and fees.</p>
+                
+                <p>8.2 <strong>Scope of Revisions.</strong> Revisions are defined as minor adjustments to the Deliverables that do not fundamentally alter the agreed-upon scope, functionality, or design direction. Examples of revisions include:</p>
+                <ul>
+                    <li>Text edits or content updates</li>
+                    <li>Color adjustments</li>
+                    <li>Layout refinements</li>
+                    <li>Image replacements</li>
+                    <li>Minor functionality adjustments</li>
+                </ul>
+                
+                <p>8.3 <strong>Change Requests.</strong> Changes that substantially alter the agreed-upon scope, functionality, or design direction are considered "Change Requests" rather than revisions. Examples of Change Requests include:</p>
+                <ul>
+                    <li>Adding new pages or sections not in the original scope</li>
+                    <li>Changing the fundamental design concept after approval</li>
+                    <li>Adding new features or functionality not specified in the original requirements</li>
+                    <li>Changing the technology stack or platform</li>
+                    <li>Significant content reorganization after development has begun</li>
+                </ul>
+                
+                <p>8.4 <strong>Handling Change Requests.</strong> If the Client wishes to make a Change Request, the following process will apply:</p>
+                <ol>
+                    <li>The Client will submit the Change Request in writing to CodeCrafted Studios</li>
+                    <li>CodeCrafted Studios will evaluate the Change Request and provide the Client with an estimate of any additional fees and timeline adjustments that would be required to implement the Change Request</li>
+                    <li>The Client will review the estimate and provide written approval before CodeCrafted Studios proceeds with implementing the Change Request</li>
+                    <li>Once approved, the Change Request will be incorporated into the project scope, and the project timeline and fees will be adjusted accordingly</li>
+                </ol>
+                
+                <p>8.5 <strong>Additional Revision Rounds.</strong> If the Client requires more revision rounds than are included in the project scope, additional revisions will be billed at CodeCrafted Studios' hourly rate as specified in the project proposal or statement of work.</p>
+                
+                <p>8.6 <strong>Revision Timeframe.</strong> To maintain project momentum, the Client agrees to provide all revision requests for a given milestone within the review period specified in the project timeline. Multiple sets of revisions submitted at different times within the same revision round may be treated as separate revision rounds.</p>
+                
+                <p>8.7 <strong>Final Approval.</strong> After all revisions have been completed, the Client will provide final written approval of the Deliverables. Once final approval has been given, any further changes will be treated as new Change Requests and may incur additional fees.</p>
+                
+                <p>8.8 <strong>Design Integrity.</strong> CodeCrafted Studios reserves the right to refuse any revision or Change Request that we believe would compromise the design quality, user experience, or technical integrity of the Deliverables. In such cases, we will work with the Client to find alternative solutions that meet the Client's needs while maintaining professional standards.</p>
+            </div>
+            
+            <div class="tos-footer">
+                <p>By using our services, you acknowledge that you have read and understood these Terms of Service and agree to be bound by them.</p>
+                <p>If you have any questions or concerns, please <a href="Contact.html" class="contact-link">contact us</a>.</p>
+            </div>

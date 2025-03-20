@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Coming Soon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+            background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            position: relative;
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Updated navbar styles to match home page */
+        .navbar {
+            background-color: #333;
+            overflow: visible;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 10;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            height: 50px;
+        }
+
+        .navbar a {
+            color: #f2f2f2;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .navbar a.active {
+            background-color: #4CAF50;
+        }
+        /* End of updated navbar styles */
+
+        .coming-soon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+            text-align: center;
+            padding: 0 20px;
+            transition: all 0.8s ease;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #f6d365, #fda085);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 10;
+            margin-top: -70px; /* Position title on top of notebook */
+            transition: all 0.5s ease;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 20px; /* Add space after title */
+            transition: all 0.5s ease;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .countdown-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 0 10px;
+            min-width: 80px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .countdown-value {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .email-form {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+            transition: opacity 0.5s ease;
+        }
+
+        .email-input {
+            padding: 12px 15px;
+            border: none;
+            border-radius: 25px;
+            width: 100%;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .notify-button {
+            padding: 12px 30px;
+            background: linear-gradient(to right, #4CAF50, #2E8B57);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .notify-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.2);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            transition: opacity 0.5s ease;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        /* Blog-specific elements */
+        .notebook-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin-bottom: 0; /* Reduced margin to allow title overlap */
+            transition: transform 0.8s ease, opacity 0.5s ease;
+        }
+
+        .notebook {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .notebook-base {
+            position: absolute;
+            width: 220px;
+            height: 280px;
+            background: #f8f8f8;
+            border-radius: 5px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .notebook-cover {
+            position: absolute;
+            width: 220px;
+            height: 280px;
+            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+            border-radius: 5px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-5deg);
+            z-index: -1;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+            transition: transform 0.5s ease, background 0.5s ease;
+        }
+
+        .notebook-spine {
+            position: absolute;
+            width: 20px;
+            height: 280px;
+            background: #5e17eb;
+            left: 0;
+            top: 0;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            transition: background 0.5s ease;
+        }
+
+        .notebook-line {
+            position: absolute;
+            height: 1px;
+            background: #ddd;
+            left: 30px;
+            right: 20px;
+            transition: opacity 0.5s ease;
+        }
+
+        .pen {
+            position: absolute;
+            width: 8px;
+            height: 120px;
+            background: linear-gradient(to bottom, #333 0%, #777 100%);
+            border-radius: 4px;
+            top: 50%;
+            right: 40px;
+            transform: translateY(-50%) rotate(30deg);
+            z-index: 2;
+            transition: transform 0.5s ease;
+        }
+
+        .pen:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-bottom: 15px solid #e74c3c;
+            bottom: -8px;
+            left: 0;
+            transition: border-bottom-color 0.5s ease;
+        }
+
+        .category-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 2rem 0;
+            max-width: 600px;
+            transition: opacity 0.5s ease;
+        }
+
+        .category-tag {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-tag:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Countdown completion effects */
+        .countdown-complete {
+            background-image: linear-gradient(135deg, #3a1c71 0%, #d76d77 50%, #ffaf7b 100%);
+            transition: background-image 1.5s ease;
+        }
+
+        .dropping-soon-title {
+            font-size: 4.2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #00c6ff, #4CAF50, #0072ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(0, 198, 255, 0.5);
+            animation: titlePulse 2s infinite alternate;
+            margin-top: 0;
+        }
+
+        .dropping-soon-subtitle {
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            opacity: 0.9;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(76, 175, 80, 0.6);
+        }
+
+        .countdown-final {
+            background-color: rgba(76, 175, 80, 0.2);
+            border: 2px solid rgba(76, 175, 80, 0.5);
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(76, 175, 80, 0.6);
+        }
+
+        .glow-button {
+            padding: 15px 35px;
+            background: linear-gradient(to right, #4CAF50, #00c6ff);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.8);
+            animation: buttonGlow 1.5s infinite alternate;
+            margin-top: 20px;
+        }
+
+        .glow-button:hover {
+            animation: buttonGlowIntense 1.5s infinite alternate;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .floating {
+            animation: floatAnimation 3s ease-in-out infinite;
+        }
+
+        .page-flipping {
+            animation: pageFlip 5s infinite;
+        }
+
+        /* Animations */
+        @keyframes titlePulse {
+            0% {
+                text-shadow: 0 0 20px rgba(0, 198, 255, 0.5);
+            }
+            100% {
+                text-shadow: 0 0 30px rgba(76, 175, 80, 0.8), 0 0 50px rgba(0, 198, 255, 0.4);
+            }
+        }
+
+        @keyframes buttonGlow {
+            0% {
+                box-shadow: 0 0 15px rgba(76, 175, 80, 0.6);
+                transform: scale(1);
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(0, 198, 255, 0.8), 0 0 50px rgba(76, 175, 80, 0.4);
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes buttonGlowIntense {
+            0% {
+                box-shadow: 0 0 20px rgba(76, 175, 80, 0.7);
+                transform: scale(1.05);
+            }
+            100% {
+                box-shadow: 0 0 40px rgba(0, 198, 255, 0.9), 0 0 60px rgba(76, 175, 80, 0.5);
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes particleFade {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
+        @keyframes floatAnimation {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes pageFlip {
+            0%, 100% {
+                transform: translate(-50%, -50%) rotate(-5deg);
+            }
+            50% {
+                transform: translate(-50%, -50%) rotate(5deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+                margin-top: -40px;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .countdown-box {
+                padding: 10px 15px;
+                min-width: 60px;
+            }
+            
+            .countdown-value {
+                font-size: 1.5rem;
+            }
+            
+            .notebook-container {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .notebook-base, .notebook-cover {
+                width: 160px;
+                height: 200px;
+            }
+            
+            .category-tags {
+                max-width: 90%;
+            }
+
+            .dropping-soon-title {
+                font-size: 3rem;
+            }
+
+            .dropping-soon-subtitle {
+                font-size: 1.5rem;
+            }
+
+            .glow-button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Updated navbar with simple Applications link -->
+    <nav class="navbar">
+        <a href="Home.html">Home</a>
+        <a href="About.html">About Us</a>
+        <a href="Services.html">Services We Offer</a>
+        <a href="pricing.html">Plans and Pricing</a>
+        <a href="Portfolio.html">Portfolio</a>
+        <a href="Blog.html" class="active">Blog</a>
+        <a href="Testimonials.html">Testimonials</a>
+        <a href="Contact.html">Contact Us</a>
+        <a href="FAQ.html">FAQ's</a>
+        <a href="Applications.html">Applications</a>
+        <a href="TOS.html">Terms of Service</a>
+    </nav>
+
+    <div class="coming-soon-container" id="mainContainer">
+        <div class="notebook-container" id="notebookContainer">
+            <div class="notebook" id="notebook">
+                <div class="notebook-cover" id="notebookCover"></div>
+                <div class="notebook-base" id="notebookBase">
+                    <div class="notebook-spine"></div>
+                    <div class="notebook-line" style="top: 30px;"></div>
+                    <div class="notebook-line" style="top: 60px;"></div>
+                    <div class="notebook-line" style="top: 90px;"></div>
+                    <div class="notebook-line" style="top: 120px;"></div>
+                    <div class="notebook-line" style="top: 150px;"></div>
+                    <div class="notebook-line" style="top: 180px;"></div>
+                    <div class="notebook-line" style="top: 210px;"></div>
+                    <div class="notebook-line" style="top: 240px;"></div>
+                </div>
+                <div class="pen" id="pen"></div>
+            </div>
+        </div>
+
+        <h1 class="title" id="mainTitle">Our Blog Is Coming Soon</h1>
+        <h2 class="subtitle" id="mainSubtitle">We're preparing insightful content about web development and design</h2>
+        
+        <div class="category-tags" id="categoryTags">
+            <div class="category-tag">Web Development</div>
+            <div class="category-tag">UI/UX Design</div>
+            <div class="category-tag">Coding Tips</div>
+            <div class="category-tag">Industry Trends</div>
+            <div class="category-tag">Case Studies</div>
+            <div class="category-tag">Tutorials</div>
+        </div>
+
+        <div class="countdown">
+            <div class="countdown-box">
+                <div class="countdown-value" id="days">--</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-value" id="hours">--</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-value" id="minutes">--</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-value" id="seconds">--</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+
+        <form class="email-form" id="emailForm" onsubmit="event.preventDefault(); alert('Thank you for subscribing! We\'ll notify you when our blog launches.');">
+            <input type="email" class="email-input" placeholder="Enter your email for blog updates" required>
+            <button type="submit" class="notify-button">Subscribe to Our Blog</button>
+        </form>
+
+        <div class="social-icons" id="socialIcons">
+            <a href="https://www.facebook.com/profile.php?id=61573576031227"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/Code_Crafted25"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.yelp.com/biz/codecrafted-studios-fort-collins?uid=pWhZ-dsFIRzGX8NYzi8LVw&utm_campaign=www_business_share_popup&utm_medium=copy_link&utm_source=(direct)"><i class="fab fa-yelp"></i></a>
+    </div>
+
+    <script>
+        // Persistent countdown that doesn't reset on page refresh - set to 60 days
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if we already have a countdown target date in localStorage
+            let targetDate;
+            
+            if (localStorage.getItem('blogCountdownTarget')) {
+                // Use the existing target date from localStorage
+                targetDate = new Date(parseInt(localStorage.getItem('blogCountdownTarget')));
+            } else {
+                // Set a new target date (60 days from now) and save it
+                targetDate = new Date();
+                targetDate.setDate(targetDate.getDate() + 60);
+                localStorage.setItem('blogCountdownTarget', targetDate.getTime().toString());
+            }
+            
+            // Function to update the countdown display
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+                
+                // If countdown is finished
+                if (distance < 0) {
+                    document.getElementById('days').innerText = '0';
+                    document.getElementById('hours').innerText = '00';
+                    document.getElementById('minutes').innerText = '00';
+                    document.getElementById('seconds').innerText = '00';
+                    
+                    // Clear localStorage so we can set a new date if needed
+                    localStorage.removeItem('blogCountdownTarget');
+                    
+                    // Show exciting announcement
+                    showExcitingAnnouncement();
+                    
+                    // Clear the interval
+                    clearInterval(countdownInterval);
+                    return;
+                }
+                
+                // Calculate time components
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                // Update the display
+                document.getElementById('days').innerText = days;
+                document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+                document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+            }
+            
+            // Initial update
+            updateCountdown();
+            
+            // Update every second
+            const countdownInterval = setInterval(updateCountdown, 1000);
+        });
+        
+        // Function to show exciting announcement when countdown ends
+        function showExcitingAnnouncement() {
+            // Change background
+            document.body.classList.add('countdown-complete');
+            
+            // Get main elements
+            const mainContainer = document.getElementById('mainContainer');
+            const notebookContainer = document.getElementById('notebookContainer');
+            const notebook = document.getElementById('notebook');
+            const notebookCover = document.getElementById('notebookCover');
+            const pen = document.getElementById('pen');
+            const categoryTags = document.getElementById('categoryTags');
+            
+            // Add floating animation to notebook
+            notebookContainer.classList.add('floating');
+            
+            // Add page-flipping animation to cover
+            notebookCover.classList.add('page-flipping');
+            
+            // Update countdown boxes
+            const countdownBoxes = document.querySelectorAll('.countdown-box');
+            countdownBoxes.forEach(box => {
+                box.classList.add('countdown-final');
+            });
+            
+            // Hide email form, category tags, and social icons temporarily
+            const emailForm = document.getElementById('emailForm');
+            const socialIcons = document.getElementById('socialIcons');
+            emailForm.style.opacity = '0';
+            socialIcons.style.opacity = '0';
+            categoryTags.style.opacity = '0';
+            
+            // Update title and subtitle
+            const mainTitle = document.getElementById('mainTitle');
+            const mainSubtitle = document.getElementById('mainSubtitle');
+            
+            setTimeout(() => {
+                // Change title and subtitle with exciting announcement
+                mainTitle.className = 'dropping-soon-title';
+                mainTitle.textContent = 'CONTENT DROPPING SHORTLY!';
+                
+                mainSubtitle.className = 'dropping-soon-subtitle';
+                mainSubtitle.textContent = 'Our incredible blog is about to launch';
+                
+                // Add particles effect
+                createParticles();
+                
+                // Add a special button after countdown ends
+                const button = document.createElement('button');
+                button.className = 'glow-button';
+                button.textContent = 'READ OUR BLOG';
+                button.onclick = function() {
+                    window.location.href = 'blog-articles.html';
+                };
+                
+                // Replace the form with the button
+                emailForm.style.display = 'none';
+                mainContainer.insertBefore(button, socialIcons);
+                
+                // Bring back social icons
+                setTimeout(() => {
+                    socialIcons.style.opacity = '1';
+                }, 500);
+                
+            }, 600);
+        }
+        
+        // Create particle effects
+        function createParticles() {
+            const container = document.getElementById('mainContainer');
+            
+            // Create and animate particles
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random position
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                
+                // Random size
+                const size = Math.random() * 10 + 3;
+                
+                // Set properties
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}px`;
+                particle.style.top = `${posY}px`;
+                
+                // Random color
+                const colors = ['#4CAF50', '#00c6ff', '#2196F3', '#81C784', '#64FFDA', '#E040FB', '#FFEB3B'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.backgroundColor = randomColor;
+                
+                // Add to DOM
+                document.body.appendChild(particle);
+                
+                // Animate and remove
+                particle.style.animation = `particleFade ${Math.random() * 3 + 2}s ease`;
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 5000);
+            }, 200);
+        }
+        
+        // Subtle animation for notebook and pen
+        const pen = document.querySelector('.pen');
+        
+        // Random slight movements for the pen
+        setInterval(() => {
+            const randomRotate = (Math.random() * 2) + 29; // 29-31 degrees
+            const randomTop = (Math.random() * 10) - 5; // -5 to +5px
+            
+            pen.style.transform = `translateY(calc(-50% + ${randomTop}px)) rotate(${randomRotate}deg)`;
+        }, 3000);
+        
+        // Make category tags interactive
+        const categoryTags = document.querySelectorAll('.category-tag');
+        categoryTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                categoryTags.forEach(t => t.style.backgroundColor = 'rgba(255, 255, 255, 0.2)');
+                tag.style.backgroundColor = 'rgba(76, 175, 80, 0.3)'; // Changed to green tint when selected
+            });
+        });
+        
+        // For testing - Uncomment to trigger the countdown completion effect immediately
+        // setTimeout(showExcitingAnnouncement, 1000);
+    </script>
+</body>
+</html>

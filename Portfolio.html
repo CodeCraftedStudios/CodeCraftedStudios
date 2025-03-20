@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Coming Soon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+            background-image: linear-gradient(to bottom right, #2c3e50, #4CA1AF);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            position: relative;
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Updated navbar styles to match home page */
+        .navbar {
+            background-color: #333;
+            overflow: visible;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 10;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            height: 50px;
+        }
+
+        .navbar a {
+            color: #f2f2f2;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .navbar a.active {
+            background-color: #4CAF50;
+        }
+
+        .coming-soon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+            text-align: center;
+            padding: 0 20px;
+            transition: all 0.8s ease;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #f6d365, #fda085);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.5s ease;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.5s ease;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .countdown-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 0 10px;
+            min-width: 80px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .countdown-value {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .email-form {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+            transition: opacity 0.5s ease;
+        }
+
+        .email-input {
+            padding: 12px 15px;
+            border: none;
+            border-radius: 25px;
+            width: 100%;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .notify-button {
+            padding: 12px 30px;
+            background: linear-gradient(to right, #4CAF50, #2E8B57);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .notify-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.2);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            transition: opacity 0.5s ease;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        .illustration {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin-bottom: 2rem;
+            transition: transform 0.8s ease, opacity 0.5s ease;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            transition: transform 0.8s ease, opacity 0.5s ease;
+        }
+
+        .laptop {
+            position: absolute;
+            width: 200px;
+            height: 120px;
+            background: #333;
+            border-radius: 10px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.8s ease, background 0.5s ease;
+        }
+
+        .laptop:before {
+            content: '';
+            position: absolute;
+            width: 140px;
+            height: 90px;
+            background: #4CA1AF;
+            top: 15px;
+            left: 30px;
+            border-radius: 3px;
+            transition: background 0.5s ease;
+        }
+
+        .keyboard {
+            position: absolute;
+            width: 240px;
+            height: 20px;
+            background: #222;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            transition: background 0.5s ease;
+        }
+
+        .code-line {
+            position: absolute;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.7);
+            transition: width 0.3s ease, background 0.5s ease;
+        }
+
+        /* Countdown completion effects */
+        .countdown-complete {
+            background-image: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            transition: background-image 1.5s ease;
+        }
+
+        .dropping-soon-title {
+            font-size: 4.2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #00c6ff, #4CAF50, #0072ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(0, 198, 255, 0.5);
+            animation: titlePulse 2s infinite alternate;
+        }
+
+        .dropping-soon-subtitle {
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            opacity: 0.9;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(76, 175, 80, 0.6);
+        }
+
+        .countdown-final {
+            background-color: rgba(76, 175, 80, 0.2);
+            border: 2px solid rgba(76, 175, 80, 0.5);
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(76, 175, 80, 0.6);
+        }
+
+        .glow-button {
+            padding: 15px 35px;
+            background: linear-gradient(to right, #4CAF50, #00c6ff);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.8);
+            animation: buttonGlow 1.5s infinite alternate;
+            margin-top: 20px;
+        }
+
+        .glow-button:hover {
+            animation: buttonGlowIntense 1.5s infinite alternate;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        /* Animations */
+        @keyframes titlePulse {
+            0% {
+                text-shadow: 0 0 20px rgba(0, 198, 255, 0.5);
+            }
+            100% {
+                text-shadow: 0 0 30px rgba(76, 175, 80, 0.8), 0 0 50px rgba(0, 198, 255, 0.4);
+            }
+        }
+
+        @keyframes buttonGlow {
+            0% {
+                box-shadow: 0 0 15px rgba(76, 175, 80, 0.6);
+                transform: scale(1);
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(0, 198, 255, 0.8), 0 0 50px rgba(76, 175, 80, 0.4);
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes buttonGlowIntense {
+            0% {
+                box-shadow: 0 0 20px rgba(76, 175, 80, 0.7);
+                transform: scale(1.05);
+            }
+            100% {
+                box-shadow: 0 0 40px rgba(0, 198, 255, 0.9), 0 0 60px rgba(76, 175, 80, 0.5);
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes particleFade {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
+        @keyframes floatAnimation {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .floating {
+            animation: floatAnimation 3s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .countdown-box {
+                padding: 10px 15px;
+                min-width: 60px;
+            }
+            
+            .countdown-value {
+                font-size: 1.5rem;
+            }
+            
+            .illustration {
+                width: 200px;
+                height: 200px;
+            }
+
+            .dropping-soon-title {
+                font-size: 3rem;
+            }
+
+            .dropping-soon-subtitle {
+                font-size: 1.5rem;
+            }
+
+            .glow-button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Updated navbar with simple Applications link -->
+    <nav class="navbar">
+        <a href="Home.html">Home</a>
+        <a href="About.html">About Us</a>
+        <a href="Services.html">Services We Offer</a>
+        <a href="pricing.html">Plans and Pricing</a>
+        <a href="Portfolio.html" class="active">Portfolio</a>
+        <a href="Blog.html">Blog</a>
+        <a href="Testimonials.html">Testimonials</a>
+        <a href="Contact.html">Contact Us</a>
+        <a href="FAQ.html">FAQ's</a>
+        <a href="Applications.html">Applications</a>
+        <a href="TOS.html">Terms of Service</a>
+    </nav>
+
+    <div class="coming-soon-container" id="mainContainer">
+        <div class="illustration" id="illustration">
+            <div class="circle" style="width: 300px; height: 300px; opacity: 0.2;"></div>
+            <div class="circle" style="width: 240px; height: 240px; top: 30px; left: 30px; opacity: 0.3;"></div>
+            <div class="laptop">
+                <div class="code-line" style="width: 70px; top: 30px; left: 50px;"></div>
+                <div class="code-line" style="width: 50px; top: 40px; left: 60px;"></div>
+                <div class="code-line" style="width: 80px; top: 50px; left: 40px;"></div>
+                <div class="code-line" style="width: 60px; top: 60px; left: 70px;"></div>
+                <div class="code-line" style="width: 90px; top: 70px; left: 50px;"></div>
+            </div>
+            <div class="keyboard"></div>
+        </div>
+
+        <h1 class="title" id="mainTitle">Our Portfolio Is Coming Soon</h1>
+        <h2 class="subtitle" id="mainSubtitle">We're crafting something amazing to showcase our best work</h2>
+
+        <div class="countdown">
+            <div class="countdown-box">
+                <div class="countdown-value" id="days">--</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-value" id="hours">--</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-value" id="minutes">--</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-value" id="seconds">--</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+
+        <form class="email-form" id="emailForm" onsubmit="event.preventDefault(); alert('Thank you! We\'ll notify you when our portfolio is ready.');">
+            <input type="email" class="email-input" placeholder="Enter your email address" required>
+            <button type="submit" class="notify-button">Notify Me When It's Ready</button>
+        </form>
+
+        <div class="social-icons" id="socialIcons">
+            <a href="https://www.facebook.com/profile.php?id=61573576031227"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/Code_Crafted25"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.yelp.com/biz/codecrafted-studios-fort-collins?uid=pWhZ-dsFIRzGX8NYzi8LVw&utm_campaign=www_business_share_popup&utm_medium=copy_link&utm_source=(direct)"><i class="fab fa-yelp"></i></a>
+        </div>
+    </div>
+
+    <script>
+        // Persistent countdown that doesn't reset on page refresh
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if we already have a countdown target date in localStorage
+            let targetDate;
+            
+            if (localStorage.getItem('portfolioCountdownTarget')) {
+                // Use the existing target date from localStorage
+                targetDate = new Date(parseInt(localStorage.getItem('portfolioCountdownTarget')));
+            } else {
+                // Set a new target date (35 days from now) and save it
+                targetDate = new Date();
+                targetDate.setDate(targetDate.getDate() + 35);
+                localStorage.setItem('portfolioCountdownTarget', targetDate.getTime().toString());
+            }
+            
+            // Function to update the countdown display
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+                
+                // If countdown is finished
+                if (distance < 0) {
+                    document.getElementById('days').innerText = '0';
+                    document.getElementById('hours').innerText = '00';
+                    document.getElementById('minutes').innerText = '00';
+                    document.getElementById('seconds').innerText = '00';
+                    
+                    // Clear localStorage so we can set a new date if needed
+                    localStorage.removeItem('portfolioCountdownTarget');
+                    
+                    // Transform the page with the exciting announcement
+                    showExcitingAnnouncement();
+                    
+                    // Clear the interval
+                    clearInterval(countdownInterval);
+                    return;
+                }
+                
+                // Calculate time components
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                // Update the display
+                document.getElementById('days').innerText = days;
+                document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+                document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+            }
+            
+            // Initial update
+            updateCountdown();
+            
+            // Update every second
+            const countdownInterval = setInterval(updateCountdown, 1000);
+        });
+        
+        // Animation for code lines
+        const codeLines = document.querySelectorAll('.code-line');
+        const codeLinesInterval = setInterval(() => {
+            codeLines.forEach(line => {
+                const randomWidth = Math.floor(Math.random() * 50) + 40;
+                line.style.width = `${randomWidth}px`;
+            });
+        }, 2000);
+
+        // Function to show the exciting announcement when countdown completes
+        function showExcitingAnnouncement() {
+            // Change background
+            document.body.classList.add('countdown-complete');
+            
+            // Get main container
+            const mainContainer = document.getElementById('mainContainer');
+            
+            // Transform the illustration
+            const illustration = document.getElementById('illustration');
+            illustration.classList.add('floating');
+            
+            // Update countdown boxes
+            const countdownBoxes = document.querySelectorAll('.countdown-box');
+            countdownBoxes.forEach(box => {
+                box.classList.add('countdown-final');
+            });
+            
+            // Hide email form and social icons temporarily
+            const emailForm = document.getElementById('emailForm');
+            const socialIcons = document.getElementById('socialIcons');
+            emailForm.style.opacity = '0';
+            socialIcons.style.opacity = '0';
+            
+            // Update title and subtitle
+            const mainTitle = document.getElementById('mainTitle');
+            const mainSubtitle = document.getElementById('mainSubtitle');
+            
+            setTimeout(() => {
+                mainTitle.className = 'dropping-soon-title';
+                mainTitle.textContent = 'UPDATE DROPPING SHORTLY!';
+                
+                mainSubtitle.className = 'dropping-soon-subtitle';
+                mainSubtitle.textContent = 'Our incredible portfolio is about to launch';
+                
+                // Add particles effect
+                createParticles();
+                
+                // Add a special button after countdown ends
+                const button = document.createElement('button');
+                button.className = 'glow-button';
+                button.textContent = 'TAKE ME THERE';
+                button.onclick = function() {
+                    window.location.href = 'portfolio-projects.html';
+                };
+                
+                // Replace the form with the button
+                emailForm.style.display = 'none';
+                mainContainer.insertBefore(button, socialIcons);
+                
+                // Bring back social icons
+                setTimeout(() => {
+                    socialIcons.style.opacity = '1';
+                }, 500);
+                
+            }, 600);
+        }
+        
+        // Create particle effects
+        function createParticles() {
+            const container = document.getElementById('mainContainer');
+            
+            // Create and animate particles
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random position
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                
+                // Random size
+                const size = Math.random() * 10 + 3;
+                
+                // Set properties
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}px`;
+                particle.style.top = `${posY}px`;
+                
+                // Random color
+                const colors = ['#4CAF50', '#00c6ff', '#2196F3', '#81C784', '#64FFDA'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.backgroundColor = randomColor;
+                
+                // Add to DOM
+                document.body.appendChild(particle);
+                
+                // Animate and remove
+                particle.style.animation = `particleFade ${Math.random() * 3 + 2}s ease`;
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 5000);
+            }, 200);
+        }
+        
+        // For testing - Uncomment to trigger the countdown completion effect immediately
+        // setTimeout(showExcitingAnnouncement, 1000);
+    </script>
+</body>
+</html>

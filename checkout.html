@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .content {
+            max-width: 90%;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        h2, h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .checkbox-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .checkbox-group label {
+            flex: 1 1 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-radius: 10px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin: 5px 0;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }       
+
+        .hidden {
+            display: none;
+        }
+
+        .order-section {
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .option-item {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .help-text {
+            font-style: italic;
+            color: #666;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            gap: 15px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .checkbox-group label {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .checkbox-group label:hover {
+            background-color: #f0f8ff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-left: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .total-price {
+            font-size: 1.5em;
+            text-align: center;
+            margin-top: 20px;
+            color: #3a86ff;
+            font-weight: bold;
+        }
+
+        .checkout-button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .checkout-button {
+            background-color: #3a86ff;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .checkout-button:hover {
+            background-color: #2563eb;
+        }
+        
+        .reset-button {
+            background-color: #64748b;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .reset-button:hover {
+            background-color: #475569;
+        }
+
+        .icon {
+            margin-right: 10px;
+        }
+
+        .options-container {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .options-container label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .options-container label:hover {
+            background-color: #f0f0f0;
+        }
+
+        .options-container input[type="checkbox"] {
+            width: auto;
+            margin-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 15px;
+            }
+
+            .checkout-button {
+                font-size: 1.2rem;
+                padding: 10px 20px;
+            }
+            
+            .checkbox-group {
+                flex-direction: column;
+            }
+            
+            .checkbox-group label {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content" style="position: relative;">
+        <h2><i class="fas fa-shopping-cart icon"></i> Complete Your Service Order</h2>
+        <form id="checkout-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="description">Description of order/website:</label>
+            <textarea id="description" name="description" required></textarea><br><br>
+
+            <label for="contact-method">What is your preferred contact method?</label>
+            <select id="contact-method" name="contact-method" required>
+                <option value="">Select an option</option>
+                <option value="email">Email</option>
+                <option value="phone">Phone</option>
+            </select><br><br>
+
+            <div id="phone-number-section" class="hidden">
+                <label for="phone-number">Phone Number:</label>
+                <input type="tel" id="phone-number" name="phone-number" pattern="\d{3}-\d{3}-\d{4}" placeholder="000-000-0000"><br><br>
+            </div>
+
+            <h3 style="text-align: center; margin-top: 30px; color: #2c3e50; font-size: 1.3em;">Select Your Services <i class="fas fa-hand-pointer" style="font-size: 0.9em;"></i></h3>
+            <div class="checkbox-group">
+                <label for="custom-website"><span><i class="fas fa-laptop-code"></i> Custom Website</span><input type="checkbox" id="custom-website" name="order-options" value="custom-website"></label>
+                <label for="discord-bot"><span><i class="fab fa-discord"></i> Discord Bot</span><input type="checkbox" id="discord-bot" name="order-options" value="discord-bot"></label>
+                <label for="consulting"><span><i class="fas fa-briefcase"></i> Consulting</span><input type="checkbox" id="consulting" name="order-options" value="consulting"></label>
+                <label for="technical-support"><span><i class="fas fa-headset"></i> Tech Support</span><input type="checkbox" id="technical-support" name="order-options" value="technical-support"></label>
+            </div>
+
+            <div id="custom-website-options" class="hidden order-section">
+                <h3>Custom Website Options</h3>
+                
+                <div class="option-item">
+                    <label for="website-pages">Number of Pages:</label>
+                    <select id="website-pages" name="website-pages">
+                        <option value="1">1 Page - $50</option>
+                        <option value="2">2 Pages - $100</option>
+                        <option value="3">3 Pages - $150</option>
+                    </select>
+                </div>
+
+                <div id="additional-pages-section" class="hidden option-item">
+                    <label for="additional-pages">Would you like to purchase additional pages?</label>
+                    <p><i>Each additional page costs $15.</i></p>
+                    <select id="additional-pages" name="additional-pages">
+                        <option value="no">No</option>
+                        <option value="yes">Yes</option>
+                    </select>
+
+                    <div id="additional-pages-input" class="hidden" style="margin-top: 10px;">
+                        <label for="additional-pages-count">Additional Pages:</label>
+                        <input type="number" id="additional-pages-count" name="additional-pages-count" min="1" max="10" value="1">
+                        <p class="help-text">Please enter a number between 1-10</p>
+                    </div>
+                </div>
+                
+                <div class="option-item">
+                    <label for="payment-gateway">Add Payment Gateway (e.g. Stripe, PayPal, etc..)</label>
+                    <select id="payment-gateway" name="payment-gateway">
+                        <option value="no">No</option>
+                        <option value="yes">Yes - $120</option>
+                    </select>
+                </div>
+                
+                <div class="option-item">
+                    <label for="product-listing">Add Product Listing</label>
+                    <select id="product-listing" name="product-listing">
+                        <option value="no">No</option>
+                        <option value="yes">Yes - $10/product</option>
+                    </select>
+                    
+                    <div id="product-listing-input" class="hidden" style="margin-top: 10px;">
+                        <label for="product-listing-count">Number of Product Listings:</label>
+                        <input type="number" id="product-listing-count" name="product-listing-count" min="1" max="20" value="1">
+                        <p class="help-text">Please enter a number between 1-20</p>
+                    </div>
+                </div>
+                
+                <div class="option-item">
+                    <label for="questionnaire">Add Forms</label>
+                    <select id="questionnaire" name="questionnaire">
+                        <option value="no">No</option>
+                        <option value="yes">Yes - $10/form</option>
+                    </select>
+                    
+                    <div id="questionnaire-input" class="hidden" style="margin-top: 10px;">
+                        <label for="questionnaire-count">Number of Forms:</label>
+                        <input type="number" id="questionnaire-count" name="questionnaire-count" min="1" max="10" value="1">
+                        <p class="help-text">Please enter a number between 1-10</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="discord-bot-options" class="hidden order-section">
+                <h3>Discord Bot Options</h3>
+                <div class="options-container">
+                    <label for="custom-bot">Custom Bot Development - $100<input type="checkbox" id="custom-bot" name="discord-bot-options" value="custom-bot"></label>
+                    <label for="bot-integration">Bot Integration - $50<input type="checkbox" id="bot-integration" name="discord-bot-options" value="bot-integration"></label>
+                    <label for="bot-maintenance">Bot Maintenance - $25/month<input type="checkbox" id="bot-maintenance" name="discord-bot-options" value="bot-maintenance"></label>
+                </div>
+            </div>
+
+            <div id="consulting-options" class="hidden order-section">
+                <h3>Consulting Options</h3>
+                <div class="options-container">
+                    <label for="tech-strategy">Tech Strategy - $75/hour<input type="checkbox" id="tech-strategy" name="consulting-options" value="tech-strategy"></label>
+                    <label for="project-management">Project Management - $75/hour<input type="checkbox" id="project-management" name="consulting-options" value="project-management"></label>
+                    <label for="code-reviews">Code Reviews - $250/review<input type="checkbox" id="code-reviews" name="consulting-options" value="code-reviews"></label>
+                </div>
+            </div>
+
+            <div id="technical-support-options" class="hidden order-section">
+                <h3>Technical Support Options</h3>
+                <div class="options-container">
+                    <label for="help-desk">Help Desk Services - $25/30 minutes<input type="checkbox" id="help-desk" name="technical-support-options" value="help-desk"></label>
+                    <label for="system-maintenance">System Maintenance - $100/month<input type="checkbox" id="system-maintenance" name="technical-support-options" value="system-maintenance"></label>
+                </div>
+            </div>
+
+            <h3 class="total-price">Total: $<span id="total-price">0</span></h3>
+            <div class="checkout-button-container">
+                <button type="button" id="proceed-to-payment" class="checkout-button"><i class="fas fa-shopping-cart icon"></i>Proceed to Payment</button>
+            </div>
+            <button type="button" id="reset-form" class="reset-button"><i class="fas fa-undo"></i> Reset</button>
+        </form>
+
+        <form id="payment-form" class="hidden">
+            <h3>Enter Payment Information</h3>
+            <div id="card-element">
+                <!-- Stripe Elements will be inserted here -->
+            </div>
+            
+            <div id="card-errors" role="alert"></div>
+            <button id="submit" class="checkout-button" style="margin-top: 20px;"><i class="fas fa-credit-card icon"></i> Pay</button>
+            <button type="button" id="back-to-form" class="reset-button" style="position: static; margin-top: 10px; display: block; margin-left: auto; margin-right: auto;"><i class="fas fa-arrow-left"></i> Back</button>
+        </form>
+    </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactMethod = document.getElementById('contact-method');
+            const phoneNumberSection = document.getElementById('phone-number-section');
+            const phoneNumberInput = document.getElementById('phone-number');
+            const customWebsiteCheckbox = document.getElementById('custom-website');
+            const discordBotCheckbox = document.getElementById('discord-bot');
+            const consultingCheckbox = document.getElementById('consulting');
+            const technicalSupportCheckbox = document.getElementById('technical-support');
+            const customWebsiteOptions = document.getElementById('custom-website-options');
+            const discordBotOptions = document.getElementById('discord-bot-options');
+            const consultingOptions = document.getElementById('consulting-options');
+            const technicalSupportOptions = document.getElementById('technical-support-options');
+            const websitePagesSelect = document.getElementById('website-pages');
+            const additionalPagesSection = document.getElementById('additional-pages-section');
+            const additionalPagesSelect = document.getElementById('additional-pages');
+            const additionalPagesInput = document.getElementById('additional-pages-input');
+            const paymentGatewaySelect = document.getElementById('payment-gateway');
+            const productListingSelect = document.getElementById('product-listing');
+            const productListingInput = document.getElementById('product-listing-input');
+            const questionnaireSelect = document.getElementById('questionnaire');
+            const questionnaireInput = document.getElementById('questionnaire-input');
+            const totalPriceElement = document.getElementById('total-price');
+            const proceedToPaymentButton = document.getElementById('proceed-to-payment');
+            const resetFormButton = document.getElementById('reset-form');
+            const backToFormButton = document.getElementById('back-to-form');
+            const paymentForm = document.getElementById('payment-form');
+            const checkoutForm = document.getElementById('checkout-form');
+    
+            let totalPrice = 0;
+    
+            // Contact Method
+            contactMethod.addEventListener('change', function() {
+                if (contactMethod.value === 'phone') {
+                    phoneNumberSection.classList.remove('hidden');
+                    phoneNumberInput.required = true;
+                } else {
+                    phoneNumberSection.classList.add('hidden');
+                    phoneNumberInput.required = false;
+                }
+            });
+    
+            // Phone Number Formatting
+            phoneNumberInput.addEventListener('input', function() {
+                let value = phoneNumberInput.value.replace(/\D/g, '');
+                if (value.length > 3 && value.length <= 6) {
+                    value = value.replace(/(\d{3})(\d+)/, '$1-$2');
+                } else if (value.length > 6) {
+                    value = value.replace(/(\d{3})(\d{3})(\d+)/, '$1-$2-$3');
+                }
+                phoneNumberInput.value = value.substring(0, 12);
+            });
+    
+            phoneNumberInput.addEventListener('keypress', function(e) {
+                if (!/\d/.test(e.key)) {
+                    e.preventDefault();
+                }
+            });
+    
+            // Main Category Checkboxes
+            customWebsiteCheckbox.addEventListener('change', function() {
+                if (customWebsiteCheckbox.checked) {
+                    customWebsiteOptions.classList.remove('hidden');
+                    // Check if 3 pages are selected to show additional pages section
+                    if (websitePagesSelect.value === '3') {
+                        additionalPagesSection.classList.remove('hidden');
+                    }
+                } else {
+                    customWebsiteOptions.classList.add('hidden');
+                }
+                updateTotalPrice();
+            });
+    
+            discordBotCheckbox.addEventListener('change', function() {
+                if (discordBotCheckbox.checked) {
+                    discordBotOptions.classList.remove('hidden');
+                } else {
+                    discordBotOptions.classList.add('hidden');
+                }
+                updateTotalPrice();
+            });
+    
+            consultingCheckbox.addEventListener('change', function() {
+                if (consultingCheckbox.checked) {
+                    consultingOptions.classList.remove('hidden');
+                } else {
+                    consultingOptions.classList.add('hidden');
+                }
+                updateTotalPrice();
+            });
+    
+            technicalSupportCheckbox.addEventListener('change', function() {
+                if (technicalSupportCheckbox.checked) {
+                    technicalSupportOptions.classList.remove('hidden');
+                } else {
+                    technicalSupportOptions.classList.add('hidden');
+                }
+                updateTotalPrice();
+            });
+    
+            // Website Pages
+            websitePagesSelect.addEventListener('change', function() {
+                if (websitePagesSelect.value === '3') {
+                    additionalPagesSection.classList.remove('hidden');
+                } else {
+                    additionalPagesSection.classList.add('hidden');
+                    additionalPagesSelect.value = 'no';
+                    additionalPagesInput.classList.add('hidden');
+                }
+                updateTotalPrice();
+            });
+    
+            // Additional Pages
+            additionalPagesSelect.addEventListener('change', function() {
+                if (this.value === 'yes') {
+                    additionalPagesInput.classList.remove('hidden');
+                } else {
+                    additionalPagesInput.classList.add('hidden');
+                }
+                updateTotalPrice();
+            });
+    
+            document.getElementById('additional-pages-count').addEventListener('input', updateTotalPrice);
+    
+            // Payment Gateway
+            paymentGatewaySelect.addEventListener('change', updateTotalPrice);
+    
+            // Product Listing
+            productListingSelect.addEventListener('change', function() {
+                if (this.value === 'yes') {
+                    productListingInput.classList.remove('hidden');
+                } else {
+                    productListingInput.classList.add('hidden');
+                }
+                updateTotalPrice();
+            });
+    
+            document.getElementById('product-listing-count').addEventListener('input', updateTotalPrice);
+    
+            // Questionnaire/Forms
+            questionnaireSelect.addEventListener('change', function() {
+                if (this.value === 'yes') {
+                    questionnaireInput.classList.remove('hidden');
+                } else {
+                    questionnaireInput.classList.add('hidden');
+                }
+                updateTotalPrice();
+            });
+    
+            document.getElementById('questionnaire-count').addEventListener('input', updateTotalPrice);
+    
+            // Discord Bot Options
+            document.getElementById('custom-bot').addEventListener('change', updateTotalPrice);
+            document.getElementById('bot-integration').addEventListener('change', updateTotalPrice);
+            document.getElementById('bot-maintenance').addEventListener('change', updateTotalPrice);
+    
+            // Consulting Options
+            document.getElementById('tech-strategy').addEventListener('change', updateTotalPrice);
+            document.getElementById('project-management').addEventListener('change', updateTotalPrice);
+            document.getElementById('code-reviews').addEventListener('change', updateTotalPrice);
+    
+            // Technical Support Options
+            document.getElementById('help-desk').addEventListener('change', updateTotalPrice);
+            document.getElementById('system-maintenance').addEventListener('change', updateTotalPrice);
+    
+            // Update Total Price function
+            function updateTotalPrice() {
+                totalPrice = 0;
+    
+                // Custom Website
+                if (customWebsiteCheckbox.checked) {
+                    // Basic pages
+                    const pagesCount = parseInt(websitePagesSelect.value);
+                    totalPrice += pagesCount * 50;
+    
+                    // Additional pages
+                    if (additionalPagesSelect.value === 'yes') {
+                        const additionalPagesCount = parseInt(document.getElementById('additional-pages-count').value) || 0;
+                        totalPrice += additionalPagesCount * 15;
+                    }
+    
+                    // Payment Gateway
+                    if (paymentGatewaySelect.value === 'yes') {
+                        totalPrice += 120;
+                    }
+    
+                    // Product Listing
+                    if (productListingSelect.value === 'yes') {
+                        const productListingCount = parseInt(document.getElementById('product-listing-count').value) || 0;
+                        totalPrice += productListingCount * 10;
+                    }
+    
+                    // Forms
+                    if (questionnaireSelect.value === 'yes') {
+                        const questionnaireCount = parseInt(document.getElementById('questionnaire-count').value) || 0;
+                        totalPrice += questionnaireCount * 10;
+                    }
+                }
+    
+                // Discord Bot
+                if (discordBotCheckbox.checked) {
+                    if (document.getElementById('custom-bot').checked) totalPrice += 100;
+                    if (document.getElementById('bot-integration').checked) totalPrice += 50;
+                    if (document.getElementById('bot-maintenance').checked) totalPrice += 25;
+                }
+    
+                // Consulting
+                if (consultingCheckbox.checked) {
+                    if (document.getElementById('tech-strategy').checked) totalPrice += 75;
+                    if (document.getElementById('project-management').checked) totalPrice += 75;
+                    if (document.getElementById('code-reviews').checked) totalPrice += 250;
+                }
+    
+                // Technical Support
+                if (technicalSupportCheckbox.checked) {
+                    if (document.getElementById('help-desk').checked) totalPrice += 25;
+                    if (document.getElementById('system-maintenance').checked) totalPrice += 100;
+                }
+    
+                totalPriceElement.textContent = totalPrice;
+            }
+    
+            // Button Actions
+            proceedToPaymentButton.addEventListener('click', function() {
+                // Form validation
+                const form = document.getElementById('checkout-form');
+                if (contactMethod.value === 'phone' && !phoneNumberInput.value) {
+                    alert('Please enter your phone number');
+                    return;
+                }
+                
+                if (totalPrice === 0) {
+                    alert('Please select at least one service');
+                    return;
+                }
+                
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+                
+                checkoutForm.classList.add('hidden');
+                paymentForm.classList.remove('hidden');
+            });
+    
+            backToFormButton.addEventListener('click', function() {
+                paymentForm.classList.add('hidden');
+                checkoutForm.classList.remove('hidden');
+            });
+    
+            resetFormButton.addEventListener('click', function() {
+                checkoutForm.reset();
+                paymentForm.classList.add('hidden');
+                checkoutForm.classList.remove('hidden');
+                totalPriceElement.textContent = '0';
+                
+                // Hide all sections
+                customWebsiteOptions.classList.add('hidden');
+                discordBotOptions.classList.add('hidden');
+                consultingOptions.classList.add('hidden');
+                technicalSupportOptions.classList.add('hidden');
+                phoneNumberSection.classList.add('hidden');
+                additionalPagesSection.classList.add('hidden');
+                additionalPagesInput.classList.add('hidden');
+                productListingInput.classList.add('hidden');
+                questionnaireInput.classList.add('hidden');
+                
+                totalPrice = 0;
+            });
+            
+            // Initialize Stripe Elements
+            // This is just a placeholder - you'll need to implement actual Stripe integration
+            try {
+                const stripe = Stripe('your_publishable_key'); // Replace with your actual key
+                const elements = stripe.elements();
+                const cardElement = elements.create('card');
+                cardElement.mount('#card-element');
+                
+                // Handle form submission
+                const form = document.getElementById('payment-form');
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    stripe.createToken(cardElement).then(function(result) {
+                        if (result.error) {
+                            const errorElement = document.getElementById('card-errors');
+                            errorElement.textContent = result.error.message;
+                        } else {
+                            // Send the token to your server
+                            alert('Payment successful! Token: ' + result.token.id);
+                            // You would normally send this token to your server
+                        }
+                    });
+                });
+            } catch (error) {
+                console.log('Stripe not initialized: ', error);
+                // Fallback for demo purposes
+                document.getElementById('submit').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('This is a demo. In a real application, payment would be processed here.');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

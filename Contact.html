@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+            background-image: url('Images/CodeCrafted Home background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            position: relative;
+        }
+
+        .content {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #FFF;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        .navbar {
+            background-color: #333;
+            overflow: visible;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0; /* Changed from top: 10 to top: 0 */
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            height: 50px;
+        }
+
+        .navbar a {
+            color: #f2f2f2;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .navbar a.active {
+            background-color: #4CAF50;
+        }
+
+        .content h1, .content h2 {
+            width: 100%;
+            text-align: center;
+        }
+
+        .big-title {
+            font-family: 'Arial Black', Gadget, sans-serif;
+            font-size: 3.5em;
+            font-weight: bold;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        .cursive-text {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.5em;
+            margin-bottom: 40px;
+        }
+
+        .montserrat-paragraph {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Contact Form Styles */
+        .contact-form {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.9);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1em;
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-control:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+
+        .btn-submit {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .btn-submit:hover {
+            background-color: #45a049;
+        }
+
+        .btn-submit:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        /* Thank You Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1050;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #2c3e50, #1a2533);
+            margin: 10% auto;
+            padding: 30px;
+            width: 50%;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            animation: slideDown 0.4s ease-out;
+        }
+        
+        .thank-you-icon {
+            font-size: 60px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(0.95); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(0.95); }
+        }
+        
+        .thank-you-title {
+            font-size: 28px;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .thank-you-message {
+            color: #e0e0e0;
+            font-size: 16px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .close-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .close-button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .required-field {
+            color: #ff6b6b;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: #4CAF50;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="Home.html">Home</a>
+        <a href="About.html">About Us</a>
+        <a href="Services.html">Services We Offer</a>
+        <a href="pricing.html">Plans and Pricing</a>
+        <a href="Portfolio.html">Portfolio</a>
+        <a href="Blog.html">Blog</a>
+        <a href="Testimonials.html">Testimonials</a>
+        <a href="Contact.html" class="active">Contact Us</a>
+        <a href="FAQ.html">FAQ's</a>
+        <a href="Applications.html">Applications</a>
+        <a href="TOS.html">Terms of Service</a>
+    </nav>
+
+    <div class="content">
+        <h1 class="big-title">Contact Us</h1>
+        <h2><span class="cursive-text">Let's Build Something Amazing Together</span></h2>
+
+        <div class="contact-info">
+            <p><i class="fas fa-phone"></i> (970) 699-2667</p>
+            <p><i class="fas fa-envelope"></i> CodeCraftedStudios@outlook.com</p>
+        </div>
+
+        <div class="contact-form">
+            <!-- Thank You Modal -->
+            <div id="thankYouModal" class="modal">
+                <div class="modal-content">
+                    <div class="thank-you-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="thank-you-title">Thank You!</h3>
+                    <p class="thank-you-message">Your message has been sent successfully. We appreciate you contacting CodeCrafted Studios. One of our team members will be in touch with you shortly.</p>
+                    <button class="close-button" onclick="closeModal()">Close</button>
+                </div>
+            </div>
+            
+            <form id="contactForm" onsubmit="return submitForm(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">Full Name <span class="required-field">*</span></label>
+                        <input type="text" id="fullName" name="fullName" class="form-control" required>
+                        <div class="error-message" id="fullNameError">Please enter your full name</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required-field">*</span></label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                        <div class="error-message" id="emailError">Please enter a valid email address</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number (10 digits) <span class="required-field">*</span></label>
+                        <input type="tel" id="phone" name="phone" class="form-control" pattern="[0-9]{10}" maxlength="10" required>
+                        <div class="error-message" id="phoneError">Please enter a valid 10-digit phone number (numbers only)</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company Name (if applicable)</label>
+                        <input type="text" id="company" name="company" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="projectType">Type of Project <span class="required-field">*</span></label>
+                    <select id="projectType" name="projectType" class="form-control" required>
+                        <option value="">-- Select Project Type --</option>
+                        <option value="Website Design">Website Design</option>
+                        <option value="Website Redesign">Website Redesign</option>
+                        <option value="E-commerce Development">E-commerce Development</option>
+                        <option value="SEO Services">SEO Services</option>
+                        <option value="SEO Services">Discord Bot Development</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div class="error-message" id="projectTypeError">Please select a project type</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="budget">Estimated Budget <span class="required-field">*</span></label>
+                    <select id="budget" name="budget" class="form-control" required>
+                        <option value="">-- Select Budget Range --</option>
+                        <option value="$50 - $400">$50 - $400</option>
+                        <option value="$500 - $1,000">$500 - $1,000</option>
+                        <option value="$500 - $1,000">$1,000+</option>
+                        <option value="Not Sure">Not Sure</option>
+                    </select>
+                    <div class="error-message" id="budgetError">Please select a budget range</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="timeline">Project Timeline <span class="required-field">*</span></label>
+                    <select id="timeline" name="timeline" class="form-control" required>
+                        <option value="">-- Select Timeline --</option>
+                        <option value="Less than 1 month">Less than 1 month</option>
+                        <option value="1-3 months">1-3 months</option>
+                        <option value="3-6 months">3-6 months</option>
+                        <option value="6+ months">6+ months</option>
+                        <option value="Not Sure">Not Sure</option>
+                    </select>
+                    <div class="error-message" id="timelineError">Please select a timeline</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="hearAbout">How did you hear about us? <span class="required-field">*</span></label>
+                    <select id="hearAbout" name="hearAbout" class="form-control" required>
+                        <option value="">-- Select Option --</option>
+                        <option value="Search Engine">Search Engine</option>
+                        <option value="Social Media">Social Media</option>
+                        <option value="Referral">Referral</option>
+                        <option value="Advertisement">Advertisement</option>
+                        <option value="Blog or Article">Blog or Article</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div class="error-message" id="hearAboutError">Please tell us how you heard about us</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="requirements">Project Requirements/Details <span class="required-field">*</span></label>
+                    <textarea id="requirements" name="requirements" class="form-control" required></textarea>
+                    <div class="error-message" id="requirementsError">Please provide project details</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="goals">What are your main goals for this project? <span class="required-field">*</span></label>
+                    <textarea id="goals" name="goals" class="form-control" required></textarea>
+                    <div class="error-message" id="goalsError">Please share your project goals</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="additionalInfo">Any additional information you'd like to share?</label>
+                    <textarea id="additionalInfo" name="additionalInfo" class="form-control"></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitButton">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function validateEmail(email) {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+        
+        function validatePhone(phone) {
+            const re = /^[0-9]{10}$/;
+            return re.test(phone);
+        }
+
+        function validateForm() {
+            let isValid = true;
+            const requiredFields = [
+                { id: 'fullName', errorId: 'fullNameError', message: 'Please enter your full name' },
+                { id: 'email', errorId: 'emailError', message: 'Please enter a valid email address', 
+                  validator: (value) => validateEmail(value) },
+                { id: 'phone', errorId: 'phoneError', message: 'Please enter a valid 10-digit phone number (numbers only)', 
+                  validator: (value) => validatePhone(value) },
+                { id: 'projectType', errorId: 'projectTypeError', message: 'Please select a project type' },
+                { id: 'budget', errorId: 'budgetError', message: 'Please select a budget range' },
+                { id: 'timeline', errorId: 'timelineError', message: 'Please select a timeline' },
+                { id: 'hearAbout', errorId: 'hearAboutError', message: 'Please tell us how you heard about us' },
+                { id: 'requirements', errorId: 'requirementsError', message: 'Please provide project details' },
+                { id: 'goals', errorId: 'goalsError', message: 'Please share your project goals' }
+            ];
+
+            // Reset all error messages
+            requiredFields.forEach(field => {
+                document.getElementById(field.errorId).style.display = 'none';
+            });
+
+            // Validate each field
+            requiredFields.forEach(field => {
+                const input = document.getElementById(field.id);
+                let fieldValid = input.value.trim() !== '';
+                
+                // If there's a custom validator, use it
+                if (field.validator && fieldValid) {
+                    fieldValid = field.validator(input.value.trim());
+                }
+                
+                if (!fieldValid) {
+                    document.getElementById(field.errorId).style.display = 'block';
+                    document.getElementById(field.errorId).textContent = field.message;
+                    isValid = false;
+                }
+            });
+
+            return isValid;
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            
+            if (validateForm()) {
+                const form = document.getElementById('contactForm');
+                const formData = new FormData(form);
+                
+                // Create a hidden form that will submit to a form-to-email service
+                const emailServiceForm = document.createElement('form');
+                emailServiceForm.method = 'POST';
+                emailServiceForm.action = 'https://formsubmit.co/codecraftedstudios@outlook.com';
+                emailServiceForm.style.display = 'none';
+                
+                // Add form data as hidden fields
+                for (const [key, value] of formData.entries()) {
+                    const hiddenField = document.createElement('input');
+                    hiddenField.type = 'hidden';
+                    hiddenField.name = key;
+                    hiddenField.value = value;
+                    emailServiceForm.appendChild(hiddenField);
+                }
+                
+                // Add additional configuration for FormSubmit service
+                const configField = document.createElement('input');
+                configField.type = 'hidden';
+                configField.name = '_subject';
+                configField.value = 'New Contact Form Submission';
+                emailServiceForm.appendChild(configField);
+                
+                // Add redirect URL after submission
+                const redirectField = document.createElement('input');
+                redirectField.type = 'hidden';
+                redirectField.name = '_next';
+                redirectField.value = window.location.href;
+                emailServiceForm.appendChild(redirectField);
+                
+                // Append the form to the body and submit it
+                document.body.appendChild(emailServiceForm);
+                
+                // Show thank you modal
+                document.getElementById('thankYouModal').style.display = 'block';
+                
+                // Submit the form
+                emailServiceForm.submit();
+                
+                // Reset the original form
+                form.reset();
+                return true;
+            }
+            
+            return false;
+        }
+
+        function closeModal() {
+            document.getElementById('thankYouModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('thankYouModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+        
+        // Real-time validation as user types
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('#contactForm input, #contactForm select, #contactForm textarea');
+            
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateForm();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
