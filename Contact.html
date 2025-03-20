@@ -327,7 +327,13 @@
                 </div>
             </div>
             
-            <form id="contactForm" onsubmit="return submitForm(event)">
+            <!-- FORM MODIFIED TO DIRECTLY USE FORMSUBMIT.CO -->
+            <form id="contactForm" action="https://formsubmit.co/ed249ad656b44132215a75438045fedd" method="POST">
+                <!-- FormSubmit Configuration Fields -->
+                <input type="hidden" name="_subject" value="New Contact Form Submission">
+                <input type="hidden" name="_next" value="https://www.codecraftedstudios.com/thank-you.html">
+                <input type="hidden" name="_captcha" value="false">
+                
                 <div class="form-row">
                     <div class="form-group">
                         <label for="fullName">Full Name <span class="required-field">*</span></label>
@@ -361,7 +367,7 @@
                         <option value="Website Redesign">Website Redesign</option>
                         <option value="E-commerce Development">E-commerce Development</option>
                         <option value="SEO Services">SEO Services</option>
-                        <option value="SEO Services">Discord Bot Development</option>
+                        <option value="Discord Bot Development">Discord Bot Development</option>
                         <option value="Other">Other</option>
                     </select>
                     <div class="error-message" id="projectTypeError">Please select a project type</div>
@@ -373,7 +379,7 @@
                         <option value="">-- Select Budget Range --</option>
                         <option value="$50 - $400">$50 - $400</option>
                         <option value="$500 - $1,000">$500 - $1,000</option>
-                        <option value="$500 - $1,000">$1,000+</option>
+                        <option value="$1,000+">$1,000+</option>
                         <option value="Not Sure">Not Sure</option>
                     </select>
                     <div class="error-message" id="budgetError">Please select a budget range</div>
@@ -480,58 +486,23 @@
             return isValid;
         }
 
-        function submitForm(event) {
-            event.preventDefault();
-            
-            if (validateForm()) {
-                const form = document.getElementById('contactForm');
-                const formData = new FormData(form);
-                
-                // Create a hidden form that will submit to a form-to-email service
-                const emailServiceForm = document.createElement('form');
-                emailServiceForm.method = 'POST';
-                emailServiceForm.action = 'https://formsubmit.co/codecraftedstudios@outlook.com';
-                emailServiceForm.style.display = 'none';
-                
-                // Add form data as hidden fields
-                for (const [key, value] of formData.entries()) {
-                    const hiddenField = document.createElement('input');
-                    hiddenField.type = 'hidden';
-                    hiddenField.name = key;
-                    hiddenField.value = value;
-                    emailServiceForm.appendChild(hiddenField);
-                }
-                
-                // Add additional configuration for FormSubmit service
-                const configField = document.createElement('input');
-                configField.type = 'hidden';
-                configField.name = '_subject';
-                configField.value = 'New Contact Form Submission';
-                emailServiceForm.appendChild(configField);
-                
-                // Add redirect URL after submission
-                const redirectField = document.createElement('input');
-                redirectField.type = 'hidden';
-                redirectField.name = '_next';
-                redirectField.value = window.location.href;
-                emailServiceForm.appendChild(redirectField);
-                
-                // Append the form to the body and submit it
-                document.body.appendChild(emailServiceForm);
-                
-                // Show thank you modal
-                document.getElementById('thankYouModal').style.display = 'block';
-                
-                // Submit the form
-                emailServiceForm.submit();
-                
-                // Reset the original form
-                form.reset();
-                return true;
+        // Add form submission event handler
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            // Validate form before submission
+            if (!validateForm()) {
+                event.preventDefault();
+                return false;
             }
             
-            return false;
-        }
+            // If validation passes, show thank you modal
+            // We'll show the modal but still let the default form submission happen
+            setTimeout(function() {
+                document.getElementById('thankYouModal').style.display = 'block';
+            }, 1000);
+            
+            // Let the form submit normally to FormSubmit.co
+            return true;
+        });
 
         function closeModal() {
             document.getElementById('thankYouModal').style.display = 'none';
