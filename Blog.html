@@ -720,80 +720,89 @@
     </div>
 
     <script>
-        // Mobile Navigation Menu
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.querySelector('.hamburger');
-            const navMenu = document.querySelector('.nav-menu');
-            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-            
-            // Toggle mobile menu
-            hamburger.addEventListener('click', function() {
-                this.classList.toggle('active');
-                navMenu.classList.toggle('active');
+        // Mobile Navigation Menu - Immediately Invoked Function Expression to avoid scoping issues
+        (function() {
+            // Wait for DOM to be fully loaded
+            document.addEventListener('DOMContentLoaded', function() {
+                // Explicitly select elements with more specific selectors
+                const hamburger = document.querySelector('.navbar .hamburger');
+                const navMenu = document.querySelector('.navbar .nav-menu');
+                const dropdownToggles = document.querySelectorAll('.navbar .dropdown-toggle');
                 
-                // Close all dropdowns when toggling the menu
-                document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                    menu.classList.remove('show');
-                });
-                document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-                    toggle.classList.remove('active');
-                });
-            });
-            
-            // Toggle dropdowns
-            dropdownToggles.forEach(toggle => {
-                toggle.addEventListener('click', function() {
-                    // Hide all other dropdowns first
-                    dropdownToggles.forEach(otherToggle => {
-                        if (otherToggle !== toggle) {
-                            otherToggle.classList.remove('active');
-                            otherToggle.nextElementSibling.classList.remove('show');
-                        }
-                    });
+                if (!hamburger || !navMenu) {
+                    console.error('Navigation elements not found');
+                    return; // Exit if elements aren't found
+                }
+                
+                // Toggle mobile menu with debugging
+                hamburger.addEventListener('click', function(event) {
+                    event.stopPropagation(); // Prevent event bubbling
+                    console.log('Hamburger clicked');
                     
-                    // Toggle current dropdown
                     this.classList.toggle('active');
-                    this.nextElementSibling.classList.toggle('show');
+                    navMenu.classList.toggle('active');
+                    
+                    // Close all dropdowns when toggling the menu
+                    document.querySelectorAll('.navbar .dropdown-menu').forEach(menu => {
+                        menu.classList.remove('show');
+                    });
+                    document.querySelectorAll('.navbar .dropdown-toggle').forEach(toggle => {
+                        toggle.classList.remove('active');
+                    });
                 });
-            });
-            
-            // Close menu and dropdowns when clicking outside
-            document.addEventListener('click', function(event) {
-                const isClickInside = event.target.closest('.navbar');
-                const isHamburgerClick = event.target.closest('.hamburger');
-                const isDropdownToggleClick = event.target.closest('.dropdown-toggle');
                 
-                if (!isClickInside || (isClickInside && !isHamburgerClick && !isDropdownToggleClick)) {
-                    if (!isHamburgerClick && !isDropdownToggleClick) {
+                // Toggle dropdowns
+                dropdownToggles.forEach(toggle => {
+                    toggle.addEventListener('click', function(event) {
+                        event.stopPropagation(); // Prevent event bubbling
+                        console.log('Dropdown toggle clicked');
+                        
+                        // Hide all other dropdowns first
+                        dropdownToggles.forEach(otherToggle => {
+                            if (otherToggle !== toggle) {
+                                otherToggle.classList.remove('active');
+                                otherToggle.nextElementSibling.classList.remove('show');
+                            }
+                        });
+                        
+                        // Toggle current dropdown
+                        this.classList.toggle('active');
+                        this.nextElementSibling.classList.toggle('show');
+                    });
+                });
+                
+                // Handle window resize
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 992) {
+                        // On desktop, reset dropdown states
+                        document.querySelectorAll('.navbar .dropdown-menu').forEach(menu => {
+                            menu.style.display = '';
+                        });
+                        
+                        // Reset mobile menu state
                         navMenu.classList.remove('active');
                         hamburger.classList.remove('active');
-                        document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                            menu.classList.remove('show');
-                        });
-                        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+                        document.querySelectorAll('.navbar .dropdown-toggle').forEach(toggle => {
                             toggle.classList.remove('active');
                         });
                     }
-                }
+                });
+                
+                // Close menu when clicking elsewhere on the page
+                document.addEventListener('click', function(event) {
+                    if (!event.target.closest('.navbar')) {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                        document.querySelectorAll('.navbar .dropdown-menu').forEach(menu => {
+                            menu.classList.remove('show');
+                        });
+                        document.querySelectorAll('.navbar .dropdown-toggle').forEach(toggle => {
+                            toggle.classList.remove('active');
+                        });
+                    }
+                });
             });
-            
-            // Handle window resize
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 992) {
-                    // On desktop, show all dropdowns as regular items
-                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                        menu.style.display = '';
-                    });
-                    
-                    // Reset mobile menu state
-                    navMenu.classList.remove('active');
-                    hamburger.classList.remove('active');
-                    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-                        toggle.classList.remove('active');
-                    });
-                }
-            });
-        });
+        })();
         
         // Persistent countdown that doesn't reset on page refresh - set to 60 days
         document.addEventListener('DOMContentLoaded', function() {
@@ -863,7 +872,7 @@
             const notebookContainer = document.getElementById('notebookContainer');
             const notebook = document.getElementById('notebook');
             const notebookCover = document.getElementById('notebookCover');
-            const pen = document.getElementById('pen');
+                const pen = document.getElementById('pen');
             const categoryTags = document.getElementById('categoryTags');
             
             // Add floating animation to notebook
@@ -871,7 +880,8 @@
             
             // Add page-flipping animation to cover
             notebookCover.classList.add('page-flipping');
-   // Update countdown boxes
+            
+            // Update countdown boxes
             const countdownBoxes = document.querySelectorAll('.countdown-box');
             countdownBoxes.forEach(box => {
                 box.classList.add('countdown-final');
