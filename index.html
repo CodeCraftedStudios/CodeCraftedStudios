@@ -3,27 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Home | CodeCrafted Studios</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Montserrat', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: #f0f0f0;
-            background-image: url('images/CodeCrafted Home background.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
-            position: relative;
-        }
-
-        .content {
-            background-color: rgba(0, 0, 0,0.7);
-            color: #FFF;
-            padding: 20px;
-            margin: 20px;
-            border-radius: 10px;
+            background: #121212;
+            color: #fff;
+            overflow-x: hidden;
         }
 
         /* Updated Navigation Bar Styles */
@@ -92,6 +80,19 @@
             margin: 5px 0;
             background-color: white;
             transition: all 0.3s ease;
+        }
+
+        /* Hamburger animation */
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
         }
 
         /* Mobile dropdown styles */
@@ -191,67 +192,177 @@
             }
         }
 
-        /* Keeping all existing styles */
-        .content h1, .content h2 {
+        /* Header styles inspired by Applications page */
+        .header {
+            position: relative;
+            height: 50vh;
+            min-height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            text-align: center;
-        }
-        
-        /* Media queries for responsive big title */
-        @media screen and (max-width: 768px) {
-            .big-title {
-                font-size: 2.5em;
-            }
-        }
-        
-        @media screen and (max-width: 480px) {
-            .big-title {
-                font-size: 2em;
-            }
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(76, 175, 80, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 70% 70%, rgba(33, 150, 243, 0.05) 0%, transparent 40%);
+            z-index: 1;
         }
 
-        .big-title {
-            font-family: 'Arial Black', Gadget, sans-serif;
-            font-size: 3.5em;
-            font-weight: bold;
-            color: #000000;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: 2;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            width: 90%;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .page-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
             margin-bottom: 20px;
-            line-height: 1.2;
-            text-align: center;
-            padding: 0 20px;
-            max-width: 100%;
-            margin: 0 auto;
-            overflow-wrap: break-word;
-            word-wrap: break-word;
-            white-space: normal;
+            background: linear-gradient(90deg, #4CAF50, #2196F3, #9C27B0);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientAnimation 5s ease infinite;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .content h1:first-child {
-            margin-top: 0;
-            padding-top: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            display: inline-block;
-            padding: 10px 20px;
-        }
-        
-        .content p {
+        .header-subtitle {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            color: #fff;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            max-width: 600px;
-            text-align: center;
         }
 
-        .cursive-text {
-            font-family: 'Brush Script MT', cursive;
-            font-size: 1.2em;
+        /* Content section styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 5;
         }
 
-        .montserrat-paragraph {
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
+        .content-section {
+            background-color: rgba(25, 25, 25, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.05) 0%, transparent 40%);
+            z-index: -1;
+            animation: rotate 15s linear infinite;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #fff;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #4CAF50, transparent);
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        /* Floating shapes */
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .shape-1 {
+            top: 20%;
+            left: 5%;
+            width: 200px;
+            height: 200px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            background-color: #4CAF50;
+            animation: floatAnimation 10s infinite ease-in-out;
+        }
+
+        .shape-2 {
+            top: 60%;
+            right: 5%;
+            width: 150px;
+            height: 150px;
+            border-radius: 53% 47% 47% 53% / 72% 25% 75% 28%;
+            background-color: #2196F3;
+            animation: floatAnimation 8s infinite ease-in-out reverse;
+        }
+
+        .shape-3 {
+            bottom: 10%;
+            left: 10%;
+            width: 100px;
+            height: 100px;
+            border-radius: 41% 59% 45% 55% / 33% 56% 44% 67%;
+            background-color: #9C27B0;
+            animation: floatAnimation 12s infinite ease-in-out;
         }
 
         /* Enhanced Grand Opening Banner Styles */
@@ -313,35 +424,8 @@
             margin: 10px 0 0 0;
             text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px #4CAF50;
         }
-        
-        /* Media queries for responsive adjustments */
-        @media screen and (max-width: 768px) {
-            .grand-opening-banner {
-                padding: 1.5rem 0;
-            }
-            
-            .banner-content {
-                padding: 0.8rem;
-                margin: 0 0.8rem;
-                width: calc(100% - 3rem);
-            }
-        }
-        
-        @media screen and (max-width: 480px) {
-            .grand-opening-banner {
-                padding: 1rem 0;
-                min-height: 150px;
-            }
-            
-            .banner-content {
-                padding: 0.6rem;
-                margin: 0 0.5rem;
-                width: calc(100% - 2rem);
-                border-radius: 10px;
-            }
-        }
 
-        /* Animated Code Background */
+        /* Code Background and Animations */
         .code-background {
             position: absolute;
             top: 0;
@@ -353,7 +437,6 @@
             overflow: hidden;
         }
         
-        /* Shooting Light Effects */
         .shooting-light {
             position: absolute;
             width: 2px;
@@ -399,18 +482,6 @@
             animation-timing-function: linear;
             animation-iteration-count: infinite;
         }
-        
-        @media screen and (max-width: 768px) {
-            .code-column {
-                font-size: 12px;
-            }
-        }
-        
-        @media screen and (max-width: 480px) {
-            .code-column {
-                font-size: 10px;
-            }
-        }
 
         .flash-overlay {
             position: absolute;
@@ -422,6 +493,47 @@
             z-index: 5;
             pointer-events: none;
             animation: flash 8s infinite;
+        }
+
+        /* Animation Keyframes */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes floatAnimation {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-15px, 15px) rotate(5deg); }
+            50% { transform: translate(0, 30px) rotate(0deg); }
+            75% { transform: translate(15px, 15px) rotate(-5deg); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes codeRain {
@@ -477,9 +589,68 @@
                 opacity: 0;
             }
         }
+
+        /* Responsive Adjustments */
+        @media screen and (max-width: 768px) {
+            .code-column {
+                font-size: 12px;
+            }
+            
+            .content-section {
+                padding: 30px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .grand-opening-banner {
+                padding: 1.5rem 0;
+            }
+            
+            .banner-content {
+                padding: 0.8rem;
+                margin: 0 0.8rem;
+                width: calc(100% - 3rem);
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .code-column {
+                font-size: 10px;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .grand-opening-banner {
+                padding: 1rem 0;
+                min-height: 150px;
+            }
+            
+            .banner-content {
+                padding: 0.6rem;
+                margin: 0 0.5rem;
+                width: calc(100% - 2rem);
+                border-radius: 10px;
+            }
+            
+            .header {
+                height: 40vh;
+            }
+        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <nav class="navbar">
@@ -517,6 +688,17 @@
         </ul>
     </nav>
     
+    <!-- Header Section (like Applications page) -->
+    <header class="header">
+        <div class="grid-overlay"></div>
+        <div class="header-content">
+            <h1 class="page-title">CodeCrafted Studios</h1>
+            <p class="header-subtitle">Building the Future, One Line at a Time</p>
+        </div>
+    </header>
+    
+    <div class="particles" id="particles"></div>
+    
     <!-- Enhanced Grand Opening Banner -->
     <div class="grand-opening-banner">
         <div class="code-background" id="codeBackground"></div>
@@ -527,197 +709,286 @@
         <div class="flash-overlay"></div>
     </div>
     
-    <div class="content">
-        <h2 class="big-title">Welcome to CodeCrafted Studios!</h2>
-        <br>
-        <h2> <span class="cursive-text">CodeCrafted Studios: Building the Future, One Line at a Time</span></h2>
-        <br>
-        <br>
-        <p>Welcome to our Web and Coding Design Studio! We specialize in creating stunning, responsive websites that not only look fantastic but also perform seamlessly across 
-            all devices. Our team of experienced designers and developers is dedicated to bringing your vision to life, whether you're a small business owner, a budding 
-            entrepreneur, or an established corporation. We believe that a well-designed website is the cornerstone of a successful online presence, and we're here to ensure 
-            yours stands out from the crowd.</p>
-            <br>
-            <br>
-            <p>Our design philosophy is rooted in simplicity and elegance. We use clean, modern layouts that are easy to navigate and visually appealing. For fonts, we recommend 
-                a combination of Sans-serif fonts like Helvetica or Arial for headings, paired with Serif fonts like Times New Roman or Georgia for body text. This combination 
-                provides a professional and polished look while ensuring readability. Additionally, we incorporate subtle animations and interactive elements to engage visitors 
-                and enhance their browsing experience.</p>
-            <br>
-            <br>
-            <p>At our studio, we understand the importance of coding standards and best practices. Our developers are proficient in HTML, CSS, JavaScript, and various frameworks 
-                such as React and Angular. We ensure that your website is not only visually appealing but also optimized for speed and performance. Our code is clean, 
-                well-documented, and easy to maintain, ensuring that your website remains up-to-date with the latest web technologies and trends.</p>
-            <br>
-            <br>
-            <p>We also offer a range of additional services to complement your website, including search engine optimization (SEO), content creation, and social media integration. 
-                Our SEO experts will help you rank higher on search engines, driving more organic traffic to your site. Our content creators can craft compelling copy that resonates 
-                with your audience, while our social media specialists can help you build a strong online presence across various platforms. Together, these services ensure that 
-                your website not only attracts visitors but also converts them into loyal customers.</p>
-            <br>
-            <br>
-            <p>Finally, we pride ourselves on our customer-centric approach. We work closely with you throughout the entire design and development process, from initial concept to 
-                final launch. Our goal is to exceed your expectations and deliver a website that truly reflects your brand and values. Whether you're looking to revamp an existing 
-                site or build a new one from scratch, we're here to help you achieve your digital goals. Contact us today to get started on your journey to a stunning and effective 
-                online presence.</p>
-            <br>
-            <br>
-            <p class="montserrat-paragraph">Feel free to explore our website to learn more about what we offer. We're here to help you every step of the way!</p>
-            <br>
-            <br>
+    <div class="container">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        
+        <section class="content-section">
+            <h2 class="section-title">Welcome to CodeCrafted Studios</h2>
+            <p>Welcome to our Web and Coding Design Studio! We specialize in creating <span class="highlight">stunning, responsive websites</span> that not only look fantastic but also perform seamlessly across all devices. Our team of experienced designers and developers is dedicated to bringing your vision to life, whether you're a small business owner, a budding entrepreneur, or an established corporation.</p>
+            
+            <p>We believe that a well-designed website is the cornerstone of a successful online presence, and we're here to ensure yours stands out from the crowd.</p>
+        </section>
+        
+        <section class="content-section">
+            <h2 class="section-title">Our Design Philosophy</h2>
+            <p>Our design philosophy is rooted in <span class="highlight">simplicity and elegance</span>. We use clean, modern layouts that are easy to navigate and visually appealing. For fonts, we recommend a combination of Sans-serif fonts like Helvetica or Arial for headings, paired with Serif fonts like Times New Roman or Georgia for body text.</p>
+            
+            <p>This combination provides a professional and polished look while ensuring readability. Additionally, we incorporate subtle animations and interactive elements to engage visitors and enhance their browsing experience.</p>
+        </section>
+        
+        <section class="content-section">
+            <h2 class="section-title">Technical Excellence</h2>
+            <p>At our studio, we understand the importance of coding standards and best practices. Our developers are proficient in <span class="highlight">HTML, CSS, JavaScript</span>, and various frameworks such as React and Angular. We ensure that your website is not only visually appealing but also optimized for speed and performance.</p>
+            
+            <p>Our code is clean, well-documented, and easy to maintain, ensuring that your website remains up-to-date with the latest web technologies and trends.</p>
+        </section>
+        
+        <section class="content-section">
+            <h2 class="section-title">Comprehensive Services</h2>
+            <p>We also offer a range of additional services to complement your website, including <span class="highlight">search engine optimization (SEO)</span>, content creation, and social media integration. Our SEO experts will help you rank higher on search engines, driving more organic traffic to your site.</p>
+            
+            <p>Our content creators can craft compelling copy that resonates with your audience, while our social media specialists can help you build a strong online presence across various platforms. Together, these services ensure that your website not only attracts visitors but also converts them into loyal customers.</p>
+        </section>
+        
+        <section class="content-section">
+            <h2 class="section-title">Client-Focused Approach</h2>
+            <p>We pride ourselves on our <span class="highlight">customer-centric approach</span>. We work closely with you throughout the entire design and development process, from initial concept to final launch. Our goal is to exceed your expectations and deliver a website that truly reflects your brand and values.</p>
+            
+            <p>Whether you're looking to revamp an existing site or build a new one from scratch, we're here to help you achieve your digital goals. Contact us today to get started on your journey to a stunning and effective online presence.</p>
+            
+            <p class="montserrat-paragraph" style="text-align: center; margin-top: 30px;">Feel free to explore our website to learn more about what we offer. We're here to help you every step of the way!</p>
+        </section>
     </div>
 
     <script>
-        // Mobile Navigation Menu
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.querySelector('.hamburger');
-            const navMenu = document.querySelector('.nav-menu');
-            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-            
-            // Toggle mobile menu
-            hamburger.addEventListener('click', function() {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
+        // Mobile Navigation Menu - Using IIFE to prevent scope issues
+        (function() {
+            // Wait for DOM to be fully loaded
+            document.addEventListener('DOMContentLoaded', function() {
+                // Explicitly select elements with more specific selectors
+                const hamburger = document.querySelector('.navbar .hamburger');
+                const navMenu = document.querySelector('.navbar .nav-menu');
+                const dropdownToggles = document.querySelectorAll('.navbar .dropdown-toggle');
                 
-                // Close all dropdowns when toggling the menu
-                document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                    menu.classList.remove('show');
-                });
-                document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-                    toggle.classList.remove('active');
-                });
-            });
-            
-            // Toggle dropdowns
-            dropdownToggles.forEach(toggle => {
-                toggle.addEventListener('click', function() {
-                    // Hide all other dropdowns first
-                    dropdownToggles.forEach(otherToggle => {
-                        if (otherToggle !== toggle) {
-                            otherToggle.classList.remove('active');
-                            otherToggle.nextElementSibling.classList.remove('show');
-                        }
-                    });
+                if (!hamburger || !navMenu) {
+                    console.error('Navigation elements not found');
+                    return; // Exit if elements aren't found
+                }
+                
+                // Toggle mobile menu with debugging
+                hamburger.addEventListener('click', function(event) {
+                    event.stopPropagation(); // Prevent event bubbling
+                    console.log('Hamburger clicked');
                     
-                    // Toggle current dropdown
                     this.classList.toggle('active');
-                    this.nextElementSibling.classList.toggle('show');
-                });
-            });
-            
-            // Close menu and dropdowns when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!event.target.closest('.navbar')) {
-                    navMenu.classList.remove('active');
-                    hamburger.classList.remove('active');
-                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    navMenu.classList.toggle('active');
+                    
+                    // Close all dropdowns when toggling the menu
+                    document.querySelectorAll('.navbar .dropdown-menu').forEach(menu => {
                         menu.classList.remove('show');
                     });
-                    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+                    document.querySelectorAll('.navbar .dropdown-toggle').forEach(toggle => {
                         toggle.classList.remove('active');
                     });
-                }
+                });
+                
+                // Toggle dropdowns
+                dropdownToggles.forEach(toggle => {
+                    toggle.addEventListener('click', function(event) {
+                        event.stopPropagation(); // Prevent event bubbling
+                        console.log('Dropdown toggle clicked');
+                        
+                        // Hide all other dropdowns first
+                        dropdownToggles.forEach(otherToggle => {
+                            if (otherToggle !== toggle) {
+                                otherToggle.classList.remove('active');
+                                otherToggle.nextElementSibling.classList.remove('show');
+                            }
+                        });
+                        
+                        // Toggle current dropdown
+                        this.classList.toggle('active');
+                        this.nextElementSibling.classList.toggle('show');
+                    });
+                });
+                
+                // Handle window resize
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 992) {
+                        // On desktop, reset dropdown states
+                        document.querySelectorAll('.navbar .dropdown-menu').forEach(menu => {
+                            menu.style.display = '';
+                        });
+                        
+                        // Reset mobile menu state
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                        document.querySelectorAll('.navbar .dropdown-toggle').forEach(toggle => {
+                            toggle.classList.remove('active');
+                        });
+                    }
+                });
+                
+                // Close menu when clicking elsewhere on the page
+                document.addEventListener('click', function(event) {
+                    if (!event.target.closest('.navbar')) {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                        document.querySelectorAll('.navbar .dropdown-menu').forEach(menu => {
+                            menu.classList.remove('show');
+                        });
+                        document.querySelectorAll('.navbar .dropdown-toggle').forEach(toggle => {
+                            toggle.classList.remove('active');
+                        });
+                    }
+                });
             });
-            
-            // Handle window resize
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 992) {
-                    // On desktop, show all dropdowns as regular items
-                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                        menu.style.display = '';
-                    });
-                    
-                    // Reset mobile menu state
-                    navMenu.classList.remove('active');
-                    hamburger.classList.remove('active');
-                    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-                        toggle.classList.remove('active');
-                    });
+        })();
+        
+        // Create floating particles (from Applications page)
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.getElementById('particles')) {
+                const particlesContainer = document.getElementById('particles');
+                const particleCount = window.innerWidth < 768 ? 30 : 50;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    createParticle(particlesContainer);
                 }
+            }
+            
+            // Add scroll animation for sections
+            const sections = document.querySelectorAll('.content-section');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style
+                                    }
+                });
+            }, observerOptions);
+            
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(50px)';
+                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(section);
             });
         });
         
+        function createParticle(container) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Random position, size, and color
+            const size = Math.random() * 3 + 1;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            const colors = ['#4CAF50', '#2196F3', '#9C27B0', '#00BCD4', '#CDDC39'];
+            particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            const left = Math.random() * 100;
+            particle.style.left = `${left}%`;
+            particle.style.bottom = `-${size}px`;
+            
+            const duration = Math.random() * 20 + 10;
+            particle.style.animationDuration = `${duration}s`;
+            
+            const delay = Math.random() * 5;
+            particle.style.animationDelay = `${delay}s`;
+            
+            container.appendChild(particle);
+            
+            // Remove particle after animation to prevent memory issues
+            setTimeout(() => {
+                if (particle.parentNode === container) {
+                    container.removeChild(particle);
+                    createParticle(container); // Create a new one to replace it
+                }
+            }, (duration + delay) * 1000);
+        }
+
         // Generate code snippets for the background effect
         document.addEventListener('DOMContentLoaded', function() {
-            const codeBackground = document.getElementById('codeBackground');
-            let containerWidth = codeBackground.offsetWidth;
-            let bannerHeight = document.querySelector('.grand-opening-banner').offsetHeight;
-            
-            // Initial creation of effects
-            initializeEffects();
-            
-            // Handle window resize
-            window.addEventListener('resize', function() {
-                // Update dimensions
-                containerWidth = codeBackground.offsetWidth;
-                bannerHeight = document.querySelector('.grand-opening-banner').offsetHeight;
+            if (document.getElementById('codeBackground')) {
+                const codeBackground = document.getElementById('codeBackground');
+                let containerWidth = codeBackground.offsetWidth;
+                let bannerHeight = document.querySelector('.grand-opening-banner').offsetHeight;
                 
-                // Adjust number of elements based on screen size
-                adjustEffectsDensity();
-            });
-            
-            function initializeEffects() {
-                // Determine number of effects based on screen width
-                const codeColumns = getCodeColumnsCount();
-                const shootingLights = getShootingLightsCount();
+                // Initial creation of effects
+                initializeEffects();
                 
-                // Create multiple columns of code
-                for (let i = 0; i < codeColumns; i++) {
-                    createCodeColumn(containerWidth);
-                }
+                // Handle window resize
+                window.addEventListener('resize', function() {
+                    // Update dimensions
+                    containerWidth = codeBackground.offsetWidth;
+                    bannerHeight = document.querySelector('.grand-opening-banner').offsetHeight;
+                    
+                    // Adjust number of elements based on screen size
+                    adjustEffectsDensity();
+                });
                 
-                // Create initial shooting lights
-                for (let i = 0; i < shootingLights; i++) {
-                    createShootingLight(containerWidth, bannerHeight);
-                }
-                
-                // Continuously create new code columns
-                setInterval(function() {
-                    if (document.querySelectorAll('.code-column').length < getCodeColumnsCount()) {
+                function initializeEffects() {
+                    // Determine number of effects based on screen width
+                    const codeColumns = getCodeColumnsCount();
+                    const shootingLights = getShootingLightsCount();
+                    
+                    // Create multiple columns of code
+                    for (let i = 0; i < codeColumns; i++) {
                         createCodeColumn(containerWidth);
                     }
-                }, 1000);
+                    
+                    // Create initial shooting lights
+                    for (let i = 0; i < shootingLights; i++) {
+                        createShootingLight(containerWidth, bannerHeight);
+                    }
+                    
+                    // Continuously create new code columns
+                    setInterval(function() {
+                        if (document.querySelectorAll('.code-column').length < getCodeColumnsCount()) {
+                            createCodeColumn(containerWidth);
+                        }
+                    }, 1000);
+                    
+                    // Continuously create new shooting lights
+                    setInterval(function() {
+                        createShootingLight(containerWidth, bannerHeight);
+                    }, 1500);
+                }
                 
-                // Continuously create new shooting lights
-                setInterval(function() {
-                    createShootingLight(containerWidth, bannerHeight);
-                }, 1500);
-            }
-            
-            function adjustEffectsDensity() {
-                // Clear excessive elements when screen gets smaller
-                const currentCodeColumns = document.querySelectorAll('.code-column');
-                const maxColumns = getCodeColumnsCount();
-                
-                if (currentCodeColumns.length > maxColumns) {
-                    // Remove excess columns
-                    for (let i = maxColumns; i < currentCodeColumns.length; i++) {
-                        if (currentCodeColumns[i] && currentCodeColumns[i].parentNode) {
-                            currentCodeColumns[i].parentNode.removeChild(currentCodeColumns[i]);
+                function adjustEffectsDensity() {
+                    // Clear excessive elements when screen gets smaller
+                    const currentCodeColumns = document.querySelectorAll('.code-column');
+                    const maxColumns = getCodeColumnsCount();
+                    
+                    if (currentCodeColumns.length > maxColumns) {
+                        // Remove excess columns
+                        for (let i = maxColumns; i < currentCodeColumns.length; i++) {
+                            if (currentCodeColumns[i] && currentCodeColumns[i].parentNode) {
+                                currentCodeColumns[i].parentNode.removeChild(currentCodeColumns[i]);
+                            }
                         }
                     }
                 }
-            }
-            
-            function getCodeColumnsCount() {
-                // Responsive number of code columns based on width
-                if (containerWidth < 480) {
-                    return 10;
-                } else if (containerWidth < 768) {
-                    return 15;
-                } else {
-                    return 25;
+                
+                function getCodeColumnsCount() {
+                    // Responsive number of code columns based on width
+                    if (containerWidth < 480) {
+                        return 10;
+                    } else if (containerWidth < 768) {
+                        return 15;
+                    } else {
+                        return 25;
+                    }
                 }
-            }
-            
-            function getShootingLightsCount() {
-                // Responsive number of shooting lights based on width
-                if (containerWidth < 480) {
-                    return 2;
-                } else if (containerWidth < 768) {
-                    return 3;
-                } else {
-                    return 5;
+                
+                function getShootingLightsCount() {
+                    // Responsive number of shooting lights based on width
+                    if (containerWidth < 480) {
+                        return 2;
+                    } else if (containerWidth < 768) {
+                        return 3;
+                    } else {
+                        return 5;
+                    }
                 }
             }
         });
@@ -859,7 +1130,5 @@
             }, randomDuration * 1000);
         }
     </script>
-</body>
-</html>
 </body>
 </html>
