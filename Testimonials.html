@@ -55,6 +55,120 @@
         .navbar a.active {
             background-color: #4CAF50;
         }
+
+         /* Hamburger menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            padding: 15px;
+            z-index: 1010;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px 0;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile dropdown styles */
+        .dropdown-menu {
+            display: none;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: #444;
+            min-width: 150px;
+        }
+        
+        .dropdown-item {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Media queries for mobile navigation */
+        @media screen and (max-width: 992px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 50px;
+                left: 0;
+                right: 0;
+                background-color: #333;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                padding: 0;
+                margin: 0;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .navbar {
+                justify-content: space-between;
+                padding: 0 20px;
+            }
+            
+            .navbar-title {
+                display: block;
+                color: white;
+                font-weight: bold;
+                font-size: 1.2rem;
+            }
+            
+            /* Mobile dropdown categories */
+            .mobile-category {
+                display: block;
+                width: 100%;
+            }
+            
+            .dropdown-toggle {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: #f2f2f2;
+                padding: 15px;
+                cursor: pointer;
+                background-color: #333;
+                font-weight: bold;
+                border-bottom: 1px solid #444;
+            }
+            
+            .dropdown-toggle::after {
+                content: '';
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 5px solid white;
+                margin-left: 5px;
+            }
+            
+            .dropdown-toggle.active::after {
+                transform: rotate(180deg);
+            }
+            
+            .dropdown-menu {
+                position: relative;
+                width: 100%;
+                top: 0;
+                left: 0;
+            }
+            
+            .dropdown-menu.show {
+                display: block;
+            }
+            
+            .dropdown-item .nav-link {
+                padding-left: 30px;
+                background-color: #444;
+            }
+        }
         /* End of updated navbar styles */
 
         .coming-soon-container {
