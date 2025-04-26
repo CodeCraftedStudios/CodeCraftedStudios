@@ -21,13 +21,13 @@
             overflow-x: hidden;
         }
 
-        /* Updated navbar styles to match home page */
+        /* Updated navbar styles with dropdown support */
         .navbar {
             background-color: #333;
             overflow: visible;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             position: sticky;
-            top: 10;
+            top: 0;
             z-index: 1000;
             display: flex;
             justify-content: center;
@@ -56,117 +56,151 @@
             background-color: #4CAF50;
         }
 
-         /* Hamburger menu */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            padding: 15px;
-            z-index: 1010;
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            flex: 1;
+            height: 100%;
         }
 
-        .bar {
+        .dropdown-btn {
+            color: #f2f2f2;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .dropdown-btn:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .dropdown-btn.active {
+            background-color: #4CAF50;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            width: 100%;
+            min-width: 180px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1001;
+        }
+
+        .dropdown-content a {
+            color: #f2f2f2;
+            padding: 12px 16px;
+            text-decoration: none;
             display: block;
+            text-align: left;
+            justify-content: flex-start;
+            height: auto;
+            flex: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .dropdown-content a.active {
+            background-color: #4CAF50;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Mobile Navigation Styles */
+        .hamburger {
+            display: none; /* Hidden by default */
+            cursor: pointer;
+            padding: 15px;
+            z-index: 1001;
+        }
+
+        .hamburger div {
             width: 25px;
             height: 3px;
+            background-color: #f2f2f2;
             margin: 5px 0;
-            background-color: white;
-            transition: all 0.3s ease;
+            transition: 0.4s;
+        }
+
+        /* Rotate hamburger lines when menu is open */
+        .open .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .open .line2 {
+            opacity: 0;
+        }
+
+        .open .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
         }
 
         /* Mobile dropdown styles */
-        .dropdown-menu {
+        .dropdown-container {
             display: none;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            background-color: #444;
-            min-width: 150px;
-        }
-        
-        .dropdown-item {
-            padding: 0;
-            margin: 0;
+            background-color: #333;
+            border-top: 2px solid #4CAF50;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            flex-direction: column;
+            overflow-y: hidden;
+            max-height: 0;
+            transition: max-height 0.5s ease-out;
         }
 
-        /* Media queries for mobile navigation */
-        @media screen and (max-width: 992px) {
+        .dropdown-container.show {
+            display: flex;
+            max-height: 500px; /* Adjust based on content */
+        }
+
+        .dropdown-section {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .dropdown-section h3 {
+            color: #4CAF50;
+            margin: 10px;
+            padding: 5px;
+            border-bottom: 1px solid #4CAF50;
+        }
+
+        .dropdown-section a {
+            padding: 10px;
+            text-align: left;
+            justify-content: flex-start;
+            height: auto;
+        }
+
+        /* Media queries for responsive navbar */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                justify-content: flex-start;
+            }
+            
             .hamburger {
                 display: block;
             }
             
-            .nav-menu {
+            .navbar-links, .dropdown {
                 display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 50px;
-                left: 0;
-                right: 0;
-                background-color: #333;
-                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-                padding: 0;
-                margin: 0;
-            }
-            
-            .nav-menu.active {
-                display: flex;
-            }
-            
-            .navbar {
-                justify-content: space-between;
-                padding: 0 20px;
-            }
-            
-            .navbar-title {
-                display: block;
-                color: white;
-                font-weight: bold;
-                font-size: 1.2rem;
-            }
-            
-            /* Mobile dropdown categories */
-            .mobile-category {
-                display: block;
-                width: 100%;
-            }
-            
-            .dropdown-toggle {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                color: #f2f2f2;
-                padding: 15px;
-                cursor: pointer;
-                background-color: #333;
-                font-weight: bold;
-                border-bottom: 1px solid #444;
-            }
-            
-            .dropdown-toggle::after {
-                content: '';
-                border-left: 5px solid transparent;
-                border-right: 5px solid transparent;
-                border-top: 5px solid white;
-                margin-left: 5px;
-            }
-            
-            .dropdown-toggle.active::after {
-                transform: rotate(180deg);
-            }
-            
-            .dropdown-menu {
-                position: relative;
-                width: 100%;
-                top: 0;
-                left: 0;
-            }
-            
-            .dropdown-menu.show {
-                display: block;
-            }
-            
-            .dropdown-item .nav-link {
-                padding-left: 30px;
-                background-color: #444;
             }
         }
         /* End of updated navbar styles */
@@ -178,7 +212,7 @@
             justify-content: center;
             height: 80vh;
             text-align: center;
-            padding: 0 20px;
+            padding: 150px 20px 0;
             transition: all 0.8s ease;
         }
 
@@ -688,19 +722,74 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Updated navbar with Applications link -->
+    <!-- Navigation Bar -->
     <nav class="navbar">
-        <a href="index.html">Home</a>
-        <a href="About.html">About Us</a>
-        <a href="Services.html">Services We Offer</a>
-        <a href="pricing.html">Plans and Pricing</a>
-        <a href="Portfolio.html">Portfolio</a>
-        <a href="Blog.html">Blog</a>
-        <a href="Testimonials.html" class="active">Testimonials</a>
-        <a href="Contact.html">Contact Us</a>
-        <a href="FAQ.html">FAQ's</a>
-        <a href="Applications.html">Applications</a>
-        <a href="TOS.html">Terms of Service</a>
+        <!-- Hamburger Menu Button -->
+        <div class="hamburger" id="hamburger-menu">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        
+        <!-- Desktop Navigation Links -->
+        <a href="Home.html" class="navbar-links">Home</a>
+        
+        <!-- The Family Dropdown -->
+        <div class="dropdown navbar-links">
+            <div class="dropdown-btn active">The Family</div>
+            <div class="dropdown-content">
+                <a href="About.html">About Us</a>
+                <a href="Portfolio.html">Portfolio</a>
+                <a href="Blog.html">Blog</a>
+                <a href="Testimonials.html" class="active">Testimonials</a>
+            </div>
+        </div>
+        
+        <!-- Information Dropdown -->
+        <div class="dropdown navbar-links">
+            <div class="dropdown-btn">Information</div>
+            <div class="dropdown-content">
+                <a href="Services.html">Services We Offer</a>
+                <a href="pricing.html">Plans and Pricing</a>
+                <a href="Contact.html">Contact Us</a>
+                <a href="FAQ.html">FAQ's</a>
+                <a href="Applications.html">Applications</a>
+            </div>
+        </div>
+        
+        <a href="TOS.html" class="navbar-links">Terms of Service</a>
+        
+        <!-- Mobile Dropdown Menu -->
+        <div class="dropdown-container" id="dropdown-menu">
+            <!-- Main Navigation -->
+            <div class="dropdown-section">
+                <a href="Home.html">Home</a>
+            </div>
+            
+            <!-- The Family Section -->
+            <div class="dropdown-section">
+                <h3>The Family</h3>
+                <a href="About.html">About Us</a>
+                <a href="Portfolio.html">Portfolio</a>
+                <a href="Blog.html">Blog</a>
+                <a href="Testimonials.html" class="active">Testimonials</a>
+            </div>
+            
+            <!-- Information Section -->
+            <div class="dropdown-section">
+                <h3>Information</h3>
+                <a href="Services.html">Services We Offer</a>
+                <a href="pricing.html">Plans and Pricing</a>
+                <a href="Contact.html">Contact Us</a>
+                <a href="FAQ.html">FAQ's</a>
+                <a href="Applications.html">Applications</a>
+            </div>
+            
+            <!-- Terms of Service -->
+            <div class="dropdown-section">
+                <a href="TOS.html">Terms of Service</a>
+            </div>
+        </div>
     </nav>
 
     <div class="coming-soon-container" id="mainContainer">
@@ -787,19 +876,89 @@
     </div>
 
     <script>
-        // Persistent countdown that doesn't reset on page refresh - set to 40 days
+        // Toggle hamburger menu and dropdown
         document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger-menu');
+            const dropdownMenu = document.getElementById('dropdown-menu');
+            
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('open');
+                dropdownMenu.classList.toggle('show');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.hamburger') && !event.target.closest('.dropdown-container')) {
+                    hamburger.classList.remove('open');
+                    dropdownMenu.classList.remove('show');
+                }
+            });
+            
+            // Make dropdown buttons clickable on mobile
+            const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+            
+            if (window.innerWidth <= 768) {
+                dropdownBtns.forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const dropdown = this.closest('.dropdown');
+                        const dropdownContent = dropdown.querySelector('.dropdown-content');
+                        
+                        // Close all other dropdowns
+                        document.querySelectorAll('.dropdown-content').forEach(content => {
+                            if (content !== dropdownContent) {
+                                content.style.display = 'none';
+                            }
+                        });
+                        
+                        // Toggle current dropdown
+                        if (dropdownContent.style.display === 'block') {
+                            dropdownContent.style.display = 'none';
+                        } else {
+                            dropdownContent.style.display = 'block';
+                        }
+                    });
+                });
+            }
+            
+            // Media query event handler
+            function checkScreenSize() {
+                if (window.innerWidth > 768) {
+                    // Reset mobile menu on desktop view
+                    hamburger.classList.remove('open');
+                    dropdownMenu.classList.remove('show');
+                    
+                    // Reset any inline styles for dropdown content
+                    document.querySelectorAll('.dropdown-content').forEach(content => {
+                        content.style.display = '';
+                    });
+                }
+            }
+            
+            // Listen for window resize events
+            window.addEventListener('resize', checkScreenSize);
+            
+            // Add floating animations to speech bubbles
+            const speechBubble1 = document.getElementById('speechBubble1');
+            const speechBubble2 = document.getElementById('speechBubble2');
+            const speechBubble3 = document.getElementById('speechBubble3');
+            
+            speechBubble1.style.animation = 'bubbleFloat 6s ease-in-out infinite';
+            speechBubble2.style.animation = 'bubbleFloat2 8s ease-in-out infinite';
+            speechBubble3.style.animation = 'bubbleFloat3 7s ease-in-out infinite';
+            
+            // Persistent countdown that doesn't reset on page refresh - set to 60 days
             // Check if we already have a countdown target date in localStorage
             let targetDate;
             
-            if (localStorage.getItem('testimonialsCountdownTarget')) {
+            if (localStorage.getItem('testimonialCountdownTarget')) {
                 // Use the existing target date from localStorage
-                targetDate = new Date(parseInt(localStorage.getItem('testimonialsCountdownTarget')));
+                targetDate = new Date(parseInt(localStorage.getItem('testimonialCountdownTarget')));
             } else {
-                // Set a new target date (40 days from now) and save it
+                // Set a new target date (60 days from now) and save it
                 targetDate = new Date();
-                targetDate.setDate(targetDate.getDate() + 40);
-                localStorage.setItem('testimonialsCountdownTarget', targetDate.getTime().toString());
+                targetDate.setDate(targetDate.getDate() + 60);
+                localStorage.setItem('testimonialCountdownTarget', targetDate.getTime().toString());
             }
             
             // Function to update the countdown display
@@ -815,20 +974,10 @@
                     document.getElementById('seconds').innerText = '00';
                     
                     // Clear localStorage so we can set a new date if needed
-                    localStorage.removeItem('testimonialsCountdownTarget');
+                    localStorage.removeItem('testimonialCountdownTarget');
                     
-                    // Check if we've already shown the exciting announcement
-                    if (!localStorage.getItem('testimonialsRevealShown')) {
-                        // Show exciting announcement
-                        showExcitingAnnouncement();
-                        // Mark that we've shown the reveal
-                        localStorage.setItem('testimonialsRevealShown', 'true');
-                    } else {
-                        // If we've already shown it before, check if we need to re-apply the state
-                        if (!document.body.classList.contains('countdown-complete')) {
-                            showExcitingAnnouncement();
-                        }
-                    }
+                    // Show exciting announcement
+                    showExcitingAnnouncement();
                     
                     // Clear the interval
                     clearInterval(countdownInterval);
@@ -854,16 +1003,17 @@
             // Update every second
             const countdownInterval = setInterval(updateCountdown, 1000);
             
-            // Check if we need to show the reveal on page load (if countdown already finished)
-            if (localStorage.getItem('testimonialsRevealShown') === 'true') {
-                const now = new Date().getTime();
-                if (targetDate - now < 0) {
-                    showExcitingAnnouncement();
-                }
-            }
+            // Make client tags interactive
+            const clientTags = document.querySelectorAll('.client-tag');
+            clientTags.forEach(tag => {
+                tag.addEventListener('click', () => {
+                    clientTags.forEach(t => t.style.backgroundColor = 'rgba(255, 255, 255, 0.2)');
+                    tag.style.backgroundColor = 'rgba(76, 175, 80, 0.3)'; // Changed to green tint when selected
+                });
+            });
         });
         
-        // Function to show exciting announcement when countdown completes
+        // Function to show exciting announcement when countdown ends
         function showExcitingAnnouncement() {
             // Change background
             document.body.classList.add('countdown-complete');
@@ -873,16 +1023,8 @@
             const speechBubblesContainer = document.getElementById('speechBubblesContainer');
             const clientType = document.getElementById('clientType');
             
-            // Create dramatic animation for speech bubbles
-            const speechBubble1 = document.getElementById('speechBubble1');
-            const speechBubble2 = document.getElementById('speechBubble2');
-            const speechBubble3 = document.getElementById('speechBubble3');
-            
-            speechBubble1.style.animation = 'bubbleFloat 3s ease-in-out infinite';
-            speechBubble2.style.animation = 'bubbleFloat2 4s ease-in-out infinite';
-            speechBubble3.style.animation = 'bubbleFloat3 3.5s ease-in-out infinite';
-            
-            speechBubblesContainer.classList.add('spinning');
+            // Add floating animation to speech bubbles container
+            speechBubblesContainer.classList.add('floating');
             
             // Update countdown boxes
             const countdownBoxes = document.querySelectorAll('.countdown-box');
@@ -904,23 +1046,25 @@
             setTimeout(() => {
                 // Change title and subtitle with exciting announcement
                 mainTitle.className = 'dropping-soon-title';
-                mainTitle.textContent = 'TESTIMONIALS REVEALED!';
+                mainTitle.textContent = 'TESTIMONIALS NOW LIVE!';
                 
                 mainSubtitle.className = 'dropping-soon-subtitle';
-                mainSubtitle.textContent = 'See what our amazing clients are saying';
+                mainSubtitle.textContent = 'Read what our amazing clients have to say';
                 
                 // Create testimonial grid
-                createTestimonialGrid();
+                const testimonialGrid = document.createElement('div');
+                testimonialGrid.className = 'testimonial-grid';
+                mainContainer.insertBefore(testimonialGrid, emailForm);
                 
-                // Add particles effect
+                // Create particle effects
                 createParticles();
                 
                 // Add a special button after countdown ends
                 const button = document.createElement('button');
                 button.className = 'glow-button';
-                button.textContent = 'EXPLORE ALL TESTIMONIALS';
+                button.textContent = 'READ TESTIMONIALS';
                 button.onclick = function() {
-                    window.location.href = 'testimonial-stories.html';
+                    window.location.href = 'testimonials-full.html';
                 };
                 
                 // Replace the form with the button
@@ -930,79 +1074,11 @@
                 // Bring back social icons
                 setTimeout(() => {
                     socialIcons.style.opacity = '1';
+                    testimonialGrid.style.opacity = '1';
+                    testimonialGrid.style.transform = 'translateY(0)';
                 }, 500);
                 
             }, 600);
-        }
-        
-        // Create testimonial grid
-        function createTestimonialGrid() {
-            const mainContainer = document.getElementById('mainContainer');
-            const emailForm = document.getElementById('emailForm');
-            
-            // Create testimonial grid
-            const testimonialGrid = document.createElement('div');
-            testimonialGrid.className = 'testimonial-grid';
-            
-            // Sample testimonial data
-            const testimonials = [
-                {
-                    name: "John Smith",
-                    title: "CEO, TechStart",
-                    quote: "CodeCrafted transformed our online presence. Their team went above and beyond!",
-                    photo: "/api/placeholder/100/100"
-                },
-                {
-                    name: "Sarah Johnson",
-                    title: "Marketing Director",
-                    quote: "Absolutely stellar work! Our new website has increased conversions by 45%.",
-                    photo: "/api/placeholder/100/100"
-                },
-                {
-                    name: "Michael Chen",
-                    title: "Small Business Owner",
-                    quote: "Professional, responsive and incredibly talented. Highly recommend!",
-                    photo: "/api/placeholder/100/100"
-                }
-            ];
-            
-            // Create testimonial cards
-            testimonials.forEach((testimonial, index) => {
-                const card = document.createElement('div');
-                card.className = 'testimonial-card';
-                
-                // Card content
-                card.innerHTML = `
-                    <img src="${testimonial.photo}" alt="${testimonial.name}">
-                    <h3>${testimonial.name}</h3>
-                    <p class="title">${testimonial.title}</p>
-                    <p class="quote">"${testimonial.quote}"</p>
-                    <div class="rating">
-                        <div class="star"><i class="fas fa-star"></i></div>
-                        <div class="star"><i class="fas fa-star"></i></div>
-                        <div class="star"><i class="fas fa-star"></i></div>
-                        <div class="star"><i class="fas fa-star"></i></div>
-                        <div class="star"><i class="fas fa-star"></i></div>
-                    </div>
-                `;
-                
-                testimonialGrid.appendChild(card);
-                
-                // Animate cards with staggered delay
-                setTimeout(() => {
-                    card.style.transform = 'translateY(0)';
-                    card.style.opacity = '1';
-                }, 300 + (index * 200));
-            });
-            
-            // Add grid to the page
-            mainContainer.insertBefore(testimonialGrid, emailForm);
-            
-            // Fade in the grid
-            setTimeout(() => {
-                testimonialGrid.style.opacity = '1';
-                testimonialGrid.style.transform = 'translateY(0)';
-            }, 200);
         }
         
         // Create particle effects
@@ -1028,7 +1104,7 @@
                 particle.style.top = `${posY}px`;
                 
                 // Random color
-                const colors = ['#4CAF50', '#00d2ff', '#2196F3', '#81C784', '#64FFDA', '#FFD700', '#00f260'];
+                const colors = ['#4CAF50', '#00d2ff', '#2196F3', '#81C784', '#64FFDA', '#E040FB', '#FFEB3B'];
                 const randomColor = colors[Math.floor(Math.random() * colors.length)];
                 particle.style.backgroundColor = randomColor;
                 
@@ -1045,53 +1121,9 @@
             }, 200);
         }
         
-        // Subtle animation for speech bubbles
-        const speechBubbles = document.querySelectorAll('.speech-bubble');
-        
-        // Create subtle hovering animation
-        speechBubbles.forEach((bubble, index) => {
-            // Store the initial transform value
-            const initialStyle = window.getComputedStyle(bubble);
-            const initialTransform = initialStyle.getPropertyValue('transform');
-            
-            // Animation loop with different timing for each bubble
-            setInterval(() => {
-                const randomTranslateY = (Math.random() * 8) - 4; // -4px to +4px
-                const randomRotate = (Math.random() * 2) - 1; // -1deg to +1deg
-                
-                // For the first bubble which has rotate(-5deg) initially
-                if (index === 0) {
-                    bubble.style.transform = `rotate(-5deg) translateY(${randomTranslateY}px) rotate(${randomRotate}deg)`;
-                } 
-                // For the second bubble which has rotate(3deg) initially
-                else if (index === 1) {
-                    bubble.style.transform = `rotate(3deg) translateY(${randomTranslateY}px) rotate(${randomRotate}deg)`;
-                }
-                // For the third bubble which has rotate(-2deg) initially
-                else if (index === 2) {
-                    bubble.style.transform = `rotate(-2deg) translateY(${randomTranslateY}px) rotate(${randomRotate}deg)`;
-                }
-            }, 2000 + (index * 500)); // Stagger the animations
-        });
-        
-        // Make client tags interactive
-        const clientTags = document.querySelectorAll('.client-tag');
-        clientTags.forEach(tag => {
-            tag.addEventListener('click', () => {
-                clientTags.forEach(t => t.style.backgroundColor = 'rgba(255, 255, 255, 0.2)');
-                tag.style.backgroundColor = 'rgba(76, 175, 80, 0.3)'; // Changed to green tint when selected
-            });
-        });
-        
         // For testing - Uncomment to trigger the countdown completion effect immediately
         // setTimeout(showExcitingAnnouncement, 1000);
-        
-        // For testing - Uncomment to reset localStorage and restart the countdown
-        // function resetCountdown() {
-        //     localStorage.removeItem('testimonialsCountdownTarget');
-        //     localStorage.removeItem('testimonialsRevealShown');
-        //     location.reload();
-        // }
     </script>
 </body>
 </html>
+                
