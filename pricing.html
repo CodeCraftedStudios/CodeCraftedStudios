@@ -451,21 +451,42 @@
             <span class="bar"></span>
         </div>
         <ul class="nav-menu">
-            <!-- Main Pages (always visible on desktop) -->
-            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="About.html" class="nav-link">About Us</a></li>
-            <li class="nav-item"><a href="Services.html" class="nav-link">Services</a></li>
-            <li class="nav-item"><a href="pricing.html" class="nav-link active">Pricing</a></li>
-            <li class="nav-item"><a href="Portfolio.html" class="nav-link">Portfolio</a></li>
-            <li class="nav-item"><a href="Contact.html" class="nav-link">Contact</a></li>
-            
-            <!-- On mobile, these will be in dropdown categories -->
-            <li class="nav-item mobile-category">
-                <div class="dropdown-toggle">Resources</div>
-                <ul class="dropdown-menu">
-                    <li class="dropdown-item"><a href="Blog.html" class="nav-link">Blog</a></li>
-                    <li class="dropdown-item"><a href="Testimonials.html" class="nav-link">Testimonials</a></li>
-                    <li class="dropdown-item"><a href="FAQ.html" class="nav-link">FAQ</a></li>
+            <!-- Navigation Bar -->
+    <nav class="navbar">
+        <!-- Hamburger Menu Button -->
+        <div class="hamburger" id="hamburger-menu">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        
+        <!-- Desktop Navigation Links -->
+        <a href="index.html" class="active navbar-links">Home</a>
+        
+        <!-- The Family Dropdown -->
+        <div class="dropdown navbar-links">
+            <div class="dropdown-btn">The Family</div>
+            <div class="dropdown-content">
+                <a href="About.html">About Us</a>
+                <a href="Portfolio.html">Portfolio</a>
+                <a href="Blog.html">Blog</a>
+                <a href="Testimonials.html">Testimonials</a>
+            </div>
+        </div>
+        
+        <!-- Information Dropdown -->
+        <div class="dropdown navbar-links">
+            <div class="dropdown-btn">Information</div>
+            <div class="dropdown-content">
+                <a href="Services.html">Services We Offer</a>
+                <a href="pricing.html">Plans and Pricing</a>
+                <a href="Contact.html">Contact Us</a>
+                <a href="FAQ.html">FAQ's</a>
+                <a href="Applications.html">Applications</a>
+            </div>
+        </div>
+        
+        <a href="TOS.html" class="navbar-links">Terms of Service</a>
                 </ul>
             </li>
             <li class="nav-item mobile-category">
