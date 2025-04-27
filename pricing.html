@@ -56,12 +56,18 @@
             top: 0;
             z-index: 1000;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             height: auto;
             min-height: 50px;
             width: 100%;
-            padding: 0;
+            padding: 0 20px;
+        }
+
+        .navbar-title {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
 
         .nav-menu {
@@ -69,7 +75,6 @@
             list-style: none;
             margin: 0;
             padding: 0;
-            width: 100%;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -132,14 +137,54 @@
             transform: translateY(-8px) rotate(-45deg);
         }
 
-        /* Mobile dropdown styles */
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #f2f2f2;
+            padding: 18px 15px;
+            cursor: pointer;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-toggle:hover {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        .dropdown-toggle::after {
+            content: '';
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid white;
+            margin-left: 5px;
+        }
+
+        .dropdown-toggle.active::after {
+            transform: rotate(180deg);
+        }
+
         .dropdown-menu {
             display: none;
+            position: absolute;
             list-style: none;
             padding: 0;
             margin: 0;
             background-color: #444;
             min-width: 150px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        
+        .dropdown-menu.show {
+            display: block;
         }
         
         .dropdown-item {
@@ -170,46 +215,10 @@
                 display: flex;
             }
             
-            .navbar {
-                justify-content: space-between;
-                padding: 0 20px;
-            }
-            
-            .navbar-title {
-                display: block;
-                color: white;
-                font-weight: bold;
-                font-size: 1.2rem;
-            }
-            
             /* Mobile dropdown categories */
             .mobile-category {
                 display: block;
                 width: 100%;
-            }
-            
-            .dropdown-toggle {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                color: #f2f2f2;
-                padding: 15px;
-                cursor: pointer;
-                background-color: #333;
-                font-weight: bold;
-                border-bottom: 1px solid #444;
-            }
-            
-            .dropdown-toggle::after {
-                content: '';
-                border-left: 5px solid transparent;
-                border-right: 5px solid transparent;
-                border-top: 5px solid white;
-                margin-left: 5px;
-            }
-            
-            .dropdown-toggle.active::after {
-                transform: rotate(180deg);
             }
             
             .dropdown-menu {
@@ -217,10 +226,6 @@
                 width: 100%;
                 top: 0;
                 left: 0;
-            }
-            
-            .dropdown-menu.show {
-                display: block;
             }
             
             .dropdown-item .nav-link {
@@ -451,50 +456,30 @@
             <span class="bar"></span>
         </div>
         <ul class="nav-menu">
-            <!-- Navigation Bar -->
-    <nav class="navbar">
-        <!-- Hamburger Menu Button -->
-        <div class="hamburger" id="hamburger-menu">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-        
-        <!-- Desktop Navigation Links -->
-        <a href="index.html" class="active navbar-links">Home</a>
-        
-        <!-- The Family Dropdown -->
-        <div class="dropdown navbar-links">
-            <div class="dropdown-btn">The Family</div>
-            <div class="dropdown-content">
-                <a href="About.html">About Us</a>
-                <a href="Portfolio.html">Portfolio</a>
-                <a href="Blog.html">Blog</a>
-                <a href="Testimonials.html">Testimonials</a>
-            </div>
-        </div>
-        
-        <!-- Information Dropdown -->
-        <div class="dropdown navbar-links">
-            <div class="dropdown-btn">Information</div>
-            <div class="dropdown-content">
-                <a href="Services.html">Services We Offer</a>
-                <a href="pricing.html">Plans and Pricing</a>
-                <a href="Contact.html">Contact Us</a>
-                <a href="FAQ.html">FAQ's</a>
-                <a href="Applications.html">Applications</a>
-            </div>
-        </div>
-        
-        <a href="TOS.html" class="navbar-links">Terms of Service</a>
+            <li class="nav-item">
+                <a href="index.html" class="nav-link active">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <div class="dropdown-toggle">The Family</div>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-item"><a href="About.html" class="nav-link">About Us</a></li>
+                    <li class="dropdown-item"><a href="Portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li class="dropdown-item"><a href="Blog.html" class="nav-link">Blog</a></li>
+                    <li class="dropdown-item"><a href="Testimonials.html" class="nav-link">Testimonials</a></li>
                 </ul>
             </li>
-            <li class="nav-item mobile-category">
-                <div class="dropdown-toggle">More</div>
+            <li class="nav-item dropdown">
+                <div class="dropdown-toggle">Information</div>
                 <ul class="dropdown-menu">
+                    <li class="dropdown-item"><a href="Services.html" class="nav-link">Services We Offer</a></li>
+                    <li class="dropdown-item"><a href="pricing.html" class="nav-link">Plans and Pricing</a></li>
+                    <li class="dropdown-item"><a href="Contact.html" class="nav-link">Contact Us</a></li>
+                    <li class="dropdown-item"><a href="FAQ.html" class="nav-link">FAQ's</a></li>
                     <li class="dropdown-item"><a href="Applications.html" class="nav-link">Applications</a></li>
-                    <li class="dropdown-item"><a href="TOS.html" class="nav-link">Terms</a></li>
                 </ul>
+            </li>
+            <li class="nav-item">
+                <a href="TOS.html" class="nav-link">Terms of Service</a>
             </li>
         </ul>
     </nav>
