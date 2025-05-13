@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             background: #f0f0f0;
-            background-image: url('Images/CodeCrafted Home background.jpg');
+            background-image: url('images/Contact background.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -18,12 +18,26 @@
             position: relative;
         }
 
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(41, 50, 65, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+            z-index: -1;
+        }
+
         .content {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(20, 25, 34, 0.85);
             color: #FFF;
-            padding: 20px;
+            padding: 30px;
             margin: 20px;
             border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         /* Navigation Bar Styles */
@@ -224,6 +238,8 @@
             font-family: 'Brush Script MT', cursive;
             font-size: 1.5em;
             margin-bottom: 40px;
+            color: #4CAF50;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .montserrat-paragraph {
@@ -236,6 +252,10 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .form-group {
@@ -247,18 +267,25 @@
             margin-bottom: 8px;
             font-weight: bold;
             font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.5px;
+            color: #e0e0e0;
         }
 
         .form-control {
             width: 100%;
             padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            background-color: rgba(255, 255, 255, 0.08);
             font-family: 'Montserrat', sans-serif;
             font-size: 1em;
-            color: #333;
+            color: #fff;
             box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
         }
 
         textarea.form-control {
@@ -269,27 +296,31 @@
         .form-control:focus {
             border-color: #4CAF50;
             outline: none;
-            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+            background-color: rgba(255, 255, 255, 0.12);
         }
 
         .btn-submit {
             background-color: #4CAF50;
             color: white;
-            padding: 12px 20px;
+            padding: 14px 24px;
             border: none;
-            border-radius: 4px;
+            border-radius: 50px;
             cursor: pointer;
             font-size: 1.1em;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
             display: block;
             margin: 0 auto;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
         }
 
         .btn-submit:hover {
             background-color: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
         }
 
         .btn-submit:disabled {
@@ -309,6 +340,7 @@
             overflow: auto;
             background-color: rgba(0,0,0,0.7);
             animation: fadeIn 0.3s ease-in-out;
+            backdrop-filter: blur(5px);
         }
         
         @keyframes fadeIn {
@@ -324,19 +356,20 @@
         .modal-content {
             background: linear-gradient(135deg, #2c3e50, #1a2533);
             margin: 10% auto;
-            padding: 30px;
+            padding: 40px;
             width: 50%;
             max-width: 500px;
             border-radius: 15px;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.5);
             text-align: center;
             animation: slideDown 0.4s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .thank-you-icon {
-            font-size: 60px;
+            font-size: 70px;
             color: #4CAF50;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             animation: pulse 1.5s infinite;
         }
         
@@ -347,38 +380,39 @@
         }
         
         .thank-you-title {
-            font-size: 28px;
+            font-size: 32px;
             color: white;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-weight: bold;
         }
         
         .thank-you-message {
             color: #e0e0e0;
             font-size: 16px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             line-height: 1.6;
         }
         
         .close-button {
             background-color: #4CAF50;
             color: white;
-            padding: 12px 24px;
+            padding: 14px 28px;
             border: none;
-            border-radius: 30px;
+            border-radius: 50px;
             cursor: pointer;
             font-size: 16px;
             font-weight: bold;
             letter-spacing: 1px;
             transition: all 0.3s;
             display: inline-block;
-            margin-top: 10px;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
         }
         
         .close-button:hover {
             background-color: #45a049;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.5);
         }
 
         .required-field {
@@ -388,11 +422,30 @@
         .contact-info {
             text-align: center;
             margin-bottom: 40px;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .contact-info p {
-            margin: 10px 0;
-            font-size: 1.1em;
+            margin: 15px 0;
+            font-size: 1.2em;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 50px;
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-info p:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .contact-info i {
@@ -419,6 +472,35 @@
                 flex-direction: column;
                 gap: 0;
             }
+            
+            .big-title {
+                font-size: 2.5em;
+            }
+            
+            .contact-info p {
+                display: block;
+                margin: 10px auto;
+                width: 80%;
+            }
+            
+            .modal-content {
+                width: 85%;
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .big-title {
+                font-size: 2em;
+            }
+            
+            .cursive-text {
+                font-size: 1.3em;
+            }
+            
+            .contact-form {
+                padding: 15px;
+            }
         }
 
         .error-message {
@@ -426,6 +508,61 @@
             font-size: 0.9em;
             margin-top: 5px;
             display: none;
+        }
+        
+        /* Contact Banner */
+        .contact-banner {
+            width: 100%;
+            margin-bottom: 30px;
+            overflow: hidden;
+            position: relative;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-banner img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+        
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(46, 204, 113, 0.6), rgba(52, 152, 219, 0.6));
+            z-index: 1;
+        }
+        
+        .banner-text {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .banner-text h2 {
+            font-size: 2.5em;
+            margin: 0 0 10px 0;
+        }
+        
+        .banner-text p {
+            font-size: 1.2em;
+            margin: 0;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -503,6 +640,16 @@
     </nav>
 
     <div class="content">
+        <!-- Banner -->
+        <div class="contact-banner">
+            <img src="images/Contact banner.jpg" alt="Contact Us Banner">
+            <div class="banner-overlay"></div>
+            <div class="banner-text">
+                <h2>Let's Connect</h2>
+                <p>We're excited to hear about your project</p>
+            </div>
+        </div>
+    
         <h1 class="big-title">Contact Us</h1>
         <h2><span class="cursive-text">Let's Build Something Amazing Together</span></h2>
 
@@ -558,7 +705,7 @@
                         <option value="Website Redesign">Website Redesign</option>
                         <option value="E-commerce Development">E-commerce Development</option>
                         <option value="SEO Services">SEO Services</option>
-                        <option value="SEO Services">Discord Bot Development</option>
+                        <option value="Discord Bot Development">Discord Bot Development</option>
                         <option value="Other">Other</option>
                     </select>
                     <div class="error-message" id="projectTypeError">Please select a project type</div>
@@ -570,7 +717,7 @@
                         <option value="">-- Select Budget Range --</option>
                         <option value="$50 - $400">$50 - $400</option>
                         <option value="$500 - $1,000">$500 - $1,000</option>
-                        <option value="$500 - $1,000">$1,000+</option>
+                        <option value="$1,000+">$1,000+</option>
                         <option value="Not Sure">Not Sure</option>
                     </select>
                     <div class="error-message" id="budgetError">Please select a budget range</div>
