@@ -24,6 +24,11 @@
             padding: 20px;
             margin: 20px;
             border-radius: 10px;
+            background-image: url('images/CodeCrafted Home background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-blend-mode: overlay;
         }
 
         .navbar {
@@ -304,6 +309,38 @@
             margin-bottom: 15px;
             color: #e0e0e0;
         }
+
+        /* About page banner styles */
+        .about-banner {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .about-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* For responsive banner */
+        @media screen and (max-width: 768px) {
+            .about-banner {
+                margin-bottom: 15px;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .about-banner {
+                margin-bottom: 10px;
+            }
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -378,6 +415,11 @@
             </div>
         </div>
     </nav>
+    
+    <!-- About Us Banner -->
+    <div class="about-banner">
+        <img src="images/About Us banner CodeCrafted.gif" alt="About Us Banner">
+    </div>
     
     <div class="content">
         <h2 class="big-title">About CodeCrafted Studios</h2>
