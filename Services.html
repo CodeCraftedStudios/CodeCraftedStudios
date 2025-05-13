@@ -372,6 +372,21 @@
             margin-bottom: 20px;
         }
 
+        /* Service Banner Styles */
+        .service-banner {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .service-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         /* Media Queries for Responsive Design */
         @media (max-width: 992px) {
             .pricing-box {
@@ -401,6 +416,10 @@
             .navbar a {
                 padding: 14px 0;
                 font-size: 14px;
+            }
+            
+            .service-banner {
+                margin-bottom: 20px;
             }
         }
 
@@ -433,6 +452,10 @@
             
             .content {
                 padding: 20px 10px;
+            }
+            
+            .service-banner {
+                margin-bottom: 15px;
             }
         }
     </style>
@@ -507,6 +530,11 @@
             </div>
         </div>
     </nav>
+
+    <!-- Services Banner -->
+    <div class="service-banner">
+        <img src="images/Services banner.gif" alt="Our Services Banner">
+    </div>
 
     <div class="content">
         <h1 class="page-title">Our Services</h1>
