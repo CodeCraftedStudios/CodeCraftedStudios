@@ -288,6 +288,43 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
+        /* Dropdown select styling */
+        select.form-control {
+            background-color: rgba(20, 25, 34, 0.9);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        select.form-control option {
+            background-color: #1a1f2a;
+            color: #fff;
+            padding: 10px;
+        }
+
+        select.form-control option:hover {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        select.form-control option:checked {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        /* For WebKit browsers (Chrome, Safari) */
+        select.form-control::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        select.form-control::-webkit-scrollbar-track {
+            background: #1a1f2a;
+        }
+
+        select.form-control::-webkit-scrollbar-thumb {
+            background: #4CAF50;
+            border-radius: 4px;
+        }
+
         textarea.form-control {
             min-height: 150px;
             resize: vertical;
@@ -298,6 +335,10 @@
             outline: none;
             box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
             background-color: rgba(255, 255, 255, 0.12);
+        }
+
+        select.form-control:focus {
+            background-color: rgba(20, 25, 34, 0.95);
         }
 
         .btn-submit {
@@ -698,7 +739,7 @@
                 <input type="hidden" name="_subject" value="New Contact Form Submission - CodeCrafted Studios">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_next" value="">
+                <input type="hidden" name="_next" value="" id="redirectUrl">
                 
                 <div class="form-row">
                     <div class="form-group">
@@ -857,6 +898,8 @@
 
         function closeModal() {
             document.getElementById('thankYouModal').style.display = 'none';
+            // Also reset the form when closing modal
+            document.getElementById('contactForm').reset();
         }
         
         // Close modal when clicking outside of it
@@ -881,14 +924,23 @@
                 loadingSpinner.style.display = 'inline-block';
                 submitText.textContent = 'Sending...';
                 
-                // Set the redirect URL to current page
-                const nextInput = document.querySelector('input[name="_next"]');
-                nextInput.value = window.location.href;
+                // Set the redirect URL to current page with success parameter
+                const redirectUrl = document.getElementById('redirectUrl');
+                redirectUrl.value = window.location.href + '?success=true';
                 
-                // Submit the form after a short delay to show loading state
+                // Show thank you modal immediately (for better UX)
+                document.getElementById('thankYouModal').style.display = 'block';
+                
+                // Submit the form after showing the modal
                 setTimeout(() => {
+                    // Reset button state
+                    submitButton.classList.remove('loading');
+                    loadingSpinner.style.display = 'none';
+                    submitText.textContent = 'Submit Request';
+                    
+                    // Actually submit the form
                     this.submit();
-                }, 500);
+                }, 1000);
             }
         });
         
@@ -967,8 +1019,10 @@
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('success') === 'true') {
                 document.getElementById('thankYouModal').style.display = 'block';
-                // Clean up URL
-                window.history.replaceState({}, document.title, window.location.pathname);
+                // Clean up URL after showing modal
+                setTimeout(() => {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }, 100);
             }
         });
     </script>
